@@ -1,0 +1,49 @@
+.widgetCard {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0e0;
+  max-width: 360px;
+  margin-left: auto;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.widgetTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.widgetSubtitle {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.widgetTime {
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  margin-top: 4px;
+}
+
+
+.chevron {
+  color: #e53935;
+  margin-right: 8px;
+  font-size: 18px;
+  animation: bounceUp 1.2s infinite;
+  display: inline-block;
+}
+
+@keyframes bounceUp {
+  0%, 100% {
+    transform: rotate(90deg) translateX(0);
+  }
+  50% {
+    transform: rotate(90deg) translateX(-4px);
+  }
+}

@@ -1,0 +1,57 @@
+.container {
+  padding: 24px;
+  max-width: 100%;
+}
+
+.pageTitle {
+  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  padding-bottom: 4px;
+}
+
+.tableCard {
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  border: 1px solid #f0f0f0;
+}
+
+.statusActive {
+  background-color: #52c41a;
+  color: white;
+  font-size: 13px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.statusInactive {
+  background-color: #ff7875;
+  color: white;
+  font-size: 13px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .container {
+    padding: 0px;
+  }
+
+  .tableCard {
+    padding: 12px;
+  }
+}
