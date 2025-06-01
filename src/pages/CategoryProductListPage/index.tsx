@@ -1,4 +1,3 @@
-// 📁 src/components/CategoryProductList/CategoryProductListPage.tsx
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import { message } from "antd";

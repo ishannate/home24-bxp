@@ -1,4 +1,3 @@
-// src/components/CategoryList/CategoryListView.tsx
 import { Typography, Spin, Tag, Card, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import type { Category } from "../../types";

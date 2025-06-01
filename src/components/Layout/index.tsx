@@ -132,7 +132,7 @@ const MainLayout = () => {
                       {
                         key: "categories",
                         label: "Categories",
-                        children: categoryMenu.items, // show category dropdown as nested menu
+                        children: categoryMenu.items,
                       },
                     ],
                   }}

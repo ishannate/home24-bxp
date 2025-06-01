@@ -50,7 +50,7 @@ const ProductForm = ({
   const formik = useFormik<ProductInput>({
     initialValues: initialValues || {
       name: "",
-      categoryId: defaultCategoryId!, // safe due to the check above
+      categoryId: defaultCategoryId!,
       status: "active",
       units: 0,
       attributes: [],

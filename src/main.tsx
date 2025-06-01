@@ -1,7 +1,7 @@
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import "antd/dist/reset.css"; // Ant Design v5 style reset
+import "antd/dist/reset.css";
 import { useAuthStore } from "./store/useAuthStore.ts";
 import "./index.css"
 

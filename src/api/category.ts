@@ -20,12 +20,10 @@ export const fetchLeafCategories = async (): Promise<Category[]> => {
 
     const allCategories = response.data;
 
-    // Identify parent category IDs
     const parentIds = new Set(
       allCategories.map((cat) => cat.parentId).filter(Boolean)
     );
 
-    // Return categories that are not parents
     const leafCategories = allCategories.filter(
       (cat) => !parentIds.has(cat.id)
     );

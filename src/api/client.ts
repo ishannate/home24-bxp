@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import camelcaseKeys from "camelcase-keys";
 
-const baseURL = import.meta.env?.VITE_API_BASE_URL || ""; // fallback for test env
+const baseURL = import.meta.env?.VITE_API_BASE_URL || "";
 
 const createClient = (customBaseURL?: string): AxiosInstance => {
   const instance = axios.create({
@@ -11,7 +11,6 @@ const createClient = (customBaseURL?: string): AxiosInstance => {
     },
   });
 
-  // ✅ Response interceptor: convert response.data to camelCase
   instance.interceptors.response.use(
     (response) => {
       if (response.data && typeof response.data === "object") {

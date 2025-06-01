@@ -1,4 +1,3 @@
-// src/router/index.tsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthStore } from '../store/useAuthStore'
 import DashboardPage from '../pages/Dashboard'

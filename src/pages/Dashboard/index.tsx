@@ -1,4 +1,3 @@
-// src/components/CategoryList/CategoryListPage.tsx
 import { useEffect, useState } from "react";
 import { message } from "antd";
 import { fetchAllCategories } from "../../api/category";

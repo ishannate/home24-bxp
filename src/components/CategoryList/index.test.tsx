@@ -2,7 +2,6 @@ import { render, screen, fireEvent, } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import CategoryList from '.';
 
-// 🧪 Mock useNavigate
 const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
