@@ -1,16 +1,14 @@
-// === Category ===
 export type Category = {
   id: number
-  parent_id?: number
+  parentId?: number
   name: string
   children?: Category[]
 }
 
-// === Product ===
 export type Product = {
   id: number
   name: string
-  category_id: number
+  categoryId: number
   attributes: AttributeValue[]
   createdAt: string;
   updatedAt: string;
@@ -30,8 +28,6 @@ export type AttributeValue =
   | { code: string; type: 'url'; value: string }
   | { code: string; type: 'tags'; value: string[] }
   | { code: string; type: 'boolean'; value: boolean }
-
-// === User ===
 export interface User {
   id: number
   email: string
@@ -44,4 +40,23 @@ export interface ProductQueryParams {
   limit?: number
   sortField?: string
   sortOrder?: 'ascend' | 'descend'
+}
+
+export interface ProductInput {
+  name: string;
+  categoryId: number;
+  status: 'active' | 'inactive';
+  units: number;
+  attributes: AttributeValue[]
+}
+
+export type ProductRequest = {
+  id?: number
+  name?: string
+  categoryId?: number
+  attributes?: AttributeValue[]
+  createdAt?: string;
+  updatedAt?: string;
+  status?: 'active' | 'inactive';
+  units?: number;
 }

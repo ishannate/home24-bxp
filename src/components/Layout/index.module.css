@@ -1,8 +1,4 @@
 /* Layout container */
-.container {
-  min-height: 100vh;
-  background: #f9fafb;
-}
 
 /* Header styling */
 .header {
@@ -41,7 +37,32 @@
 /* Menu links */
 .menu {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 16px;
+}
+
+.desktopMenu {
+  display: flex;
+  gap: 16px;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.menuIcon {
+  font-size: 20px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .desktopMenu {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: flex;
+  }
 }
 
 .navItem {

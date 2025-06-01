@@ -2,36 +2,48 @@ import { useEffect, useState } from "react";
 import { fetchProductsByCategory } from "../../api/product";
 import type { Product } from "../../types";
 import styles from "./index.module.css";
-import { DoubleLeftOutlined } from '@ant-design/icons'
+import { DoubleLeftOutlined } from "@ant-design/icons";
 
 interface LastUpdatedProductWidgetProps {
   categoryId: string;
+  lastUpdatedProductId?: number;
 }
 
 const LastUpdatedProductWidget = ({
   categoryId,
+  lastUpdatedProductId,
 }: LastUpdatedProductWidgetProps) => {
   const [product, setProduct] = useState<Product | null>(null);
 
+  const fetchLastUpdatedProduct = async () => {
+    try {
+      const { data } = await fetchProductsByCategory({
+        categoryId,
+        sortField: "updatedAt",
+        sortOrder: "descend",
+        page: 1,
+        limit: 1,
+      });
+
+      setProduct(data[0]);
+    } catch (error) {
+      console.error("Failed to fetch last updated product", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchLastUpdatedProduct = async () => {
-      try {
-        const { data } = await fetchProductsByCategory({
-          categoryId,
-          sortField: "updatedAt",
-          sortOrder: "descend",
-          page: 1,
-          limit: 1,
-        });
-
-          setProduct(data[0]);
-      } catch (error) {
-        console.error("Failed to fetch last updated product", error);
-      }
-    };
-
     fetchLastUpdatedProduct();
   }, [categoryId]);
+
+  useEffect(() => {
+    if (
+      lastUpdatedProductId !== undefined &&
+      product !== null &&
+      product.id !== lastUpdatedProductId
+    ) {
+      fetchLastUpdatedProduct();
+    }
+  }, [lastUpdatedProductId, product]);
 
   if (!product) return null;
 

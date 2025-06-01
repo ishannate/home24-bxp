@@ -4,6 +4,8 @@
   padding: 24px 28px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   border: 1px solid #e0e0e0;
+  min-width: 260px;
+  width: 100%;
   max-width: 360px;
   margin-left: auto;
   margin-bottom: 24px;

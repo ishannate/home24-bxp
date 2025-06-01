@@ -1,4 +1,4 @@
-import { Layout, Avatar, Dropdown } from "antd";
+import { Layout, Avatar, Dropdown, Flex, Typography } from "antd";
 import type { MenuProps } from "antd";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
@@ -8,12 +8,10 @@ import { fetchAllCategories } from "../../api/category";
 import { buildCategoryTree, findCategoryById } from "../../utils/categoryTree";
 import type { Category } from "../../types";
 import styles from "./index.module.css";
-import {
-  FolderOutlined,
-  FolderOpenOutlined,
-} from "@ant-design/icons";
+import { FolderOutlined, FolderOpenOutlined, MenuOutlined } from "@ant-design/icons";
 
 const { Header, Content } = Layout;
+const { Text} = Typography;
 
 const MainLayout = () => {
   const user = useAuthStore((state) => state.user);
@@ -95,39 +93,71 @@ const MainLayout = () => {
   return (
     <Layout className={styles.container}>
       <Header className={styles.header}>
-        <div className={styles.headerInner}>
-          <div className={styles.navLeft}>
-            <span
+        <Flex className={styles.headerInner}>
+          <Flex className={styles.navLeft}>
+            <Text
               className={styles.logo}
               onClick={() => navigate("/dashboard")}
             >
               🗂 Home-24-BXP
-            </span>
-            <div className={styles.menu}>
-              <span
-                onClick={() => navigate("/dashboard")}
-                className={styles.navItem}
-              >
-                Dashboard
-              </span>
-              <Dropdown menu={categoryMenu} trigger={["click"]}>
-                <span className={styles.navItem} style={{ cursor: "pointer" }}>
-                  Categories
-                </span>
-              </Dropdown>
-            </div>
-          </div>
+            </Text>
+            <Flex className={styles.menu}>
+              <Flex className={styles.desktopMenu}>
+                <Text
+                  onClick={() => navigate("/dashboard")}
+                  className={styles.navItem}
+                >
+                  Dashboard
+                </Text>
+                <Dropdown menu={categoryMenu} trigger={["click"]}>
+                  <Text
+                    className={styles.navItem}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Categories
+                  </Text>
+                </Dropdown>
+              </Flex>
+
+              <Flex className={styles.mobileMenu}>
+                <Dropdown
+                  trigger={["click"]}
+                  menu={{
+                    items: [
+                      {
+                        key: "dashboard",
+                        label: "Dashboard",
+                        onClick: () => navigate("/dashboard"),
+                      },
+                      {
+                        key: "categories",
+                        label: "Categories",
+                        children: categoryMenu.items, // show category dropdown as nested menu
+                      },
+                    ],
+                  }}
+                >
+                  <span
+                    className={styles.navItem}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <MenuOutlined className={styles.menuIcon} />
+                  </span>
+                </Dropdown>
+              </Flex>
+            </Flex>
+          </Flex>
 
           {user && (
-            <div className={styles.navRight}>
+            <Flex className={styles.navRight}>
               <Dropdown menu={{ items: userMenu }} trigger={["click"]}>
                 <Avatar className={styles.avatar}>
                   {getInitials(user.name)}
                 </Avatar>
               </Dropdown>
-            </div>
+            </Flex>
           )}
-        </div>
+        </Flex>
       </Header>
 
       <Content className={styles.content}>

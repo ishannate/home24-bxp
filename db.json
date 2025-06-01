@@ -77,7 +77,6 @@
       "createdAt": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
-
     {
       "id": 11,
       "name": "Household",
@@ -98,7 +97,6 @@
       "createdAt": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
-
     {
       "id": 14,
       "name": "Garden",
@@ -119,7 +117,6 @@
       "createdAt": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
-
     {
       "id": 17,
       "name": "Electric Appliances",
@@ -149,7 +146,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -159,9 +156,9 @@
         }
       ],
       "createdAt": "2025-05-19T07:25:18.827755Z",
-      "updatedAt": "2025-05-23T07:25:18.827755Z",
+      "updatedAt": "2025-06-01T07:39:02.100Z",
       "status": "active",
-      "units": 20
+      "units": 200
     },
     {
       "id": 101,
@@ -170,7 +167,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -191,7 +188,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -212,7 +209,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -233,7 +230,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -254,7 +251,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -275,7 +272,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -296,7 +293,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -317,7 +314,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -338,7 +335,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -359,7 +356,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -380,7 +377,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -401,7 +398,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -422,7 +419,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -443,7 +440,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -464,7 +461,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -485,7 +482,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -506,7 +503,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -527,7 +524,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -548,7 +545,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -569,7 +566,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -590,7 +587,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -611,7 +608,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -632,7 +629,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -653,7 +650,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -674,7 +671,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -695,7 +692,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -716,7 +713,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -731,55 +728,13 @@
       "units": 24
     },
     {
-      "id": 128,
-      "name": "Product 128 for Category 5",
-      "category_id": 5,
-      "attributes": [
-        {
-          "code": "feature",
-          "type": "text",
-          "value": "feature 1"
-        },
-        {
-          "code": "price",
-          "type": "number",
-          "value": 100
-        }
-      ],
-      "createdAt": "2025-05-15T07:25:18.828117Z",
-      "updatedAt": "2025-05-18T07:25:18.828117Z",
-      "status": "inactive",
-      "units": 33
-    },
-    {
-      "id": 129,
-      "name": "Product 129 for Category 5",
-      "category_id": 5,
-      "attributes": [
-        {
-          "code": "feature",
-          "type": "text",
-          "value": "feature 2"
-        },
-        {
-          "code": "price",
-          "type": "number",
-          "value": 105
-        }
-      ],
-      "createdAt": "2025-05-11T07:25:18.828125Z",
-      "updatedAt": "2025-05-15T07:25:18.828125Z",
-      "status": "active",
-      "units": 17
-    },
-    {
       "id": 130,
       "name": "Product 130 for Category 5",
       "category_id": 5,
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -789,9 +744,9 @@
         }
       ],
       "createdAt": "2025-05-06T07:25:18.828133Z",
-      "updatedAt": "2025-05-14T07:25:18.828133Z",
-      "status": "inactive",
-      "units": 167
+      "updatedAt": "2025-05-31T12:55:07.406Z",
+      "status": "active",
+      "units": 1670
     },
     {
       "id": 131,
@@ -800,7 +755,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -821,7 +776,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -842,7 +797,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -852,7 +807,7 @@
         }
       ],
       "createdAt": "2025-05-13T07:25:18.828157Z",
-      "updatedAt": "2025-05-15T07:25:18.828157Z",
+      "updatedAt": "2025-05-31T12:55:23.432Z",
       "status": "active",
       "units": 156
     },
@@ -863,7 +818,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -884,7 +839,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -905,7 +860,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -926,7 +881,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -947,7 +902,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -968,7 +923,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -989,7 +944,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1010,7 +965,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1031,7 +986,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -1052,7 +1007,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -1073,7 +1028,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -1094,7 +1049,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -1115,7 +1070,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -1136,7 +1091,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1157,7 +1112,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1178,7 +1133,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -1199,7 +1154,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -1220,7 +1175,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -1241,7 +1196,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -1262,7 +1217,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -1283,7 +1238,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1304,7 +1259,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1325,7 +1280,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -1346,7 +1301,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -1367,7 +1322,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -1388,7 +1343,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -1409,7 +1364,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -1430,7 +1385,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1451,7 +1406,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1472,7 +1427,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -1493,7 +1448,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -1514,7 +1469,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -1535,7 +1490,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -1556,7 +1511,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -1577,7 +1532,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1598,7 +1553,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1619,7 +1574,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -1640,7 +1595,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -1661,7 +1616,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -1682,7 +1637,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -1703,7 +1658,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -1724,7 +1679,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1745,7 +1700,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1766,7 +1721,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 1"
         },
         {
@@ -1787,7 +1742,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 2"
         },
         {
@@ -1808,7 +1763,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 3"
         },
         {
@@ -1829,7 +1784,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 4"
         },
         {
@@ -1850,7 +1805,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 5"
         },
         {
@@ -1871,7 +1826,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 6"
         },
         {
@@ -1892,7 +1847,7 @@
       "attributes": [
         {
           "code": "feature",
-          "type": "text",
+          "type": "string",
           "value": "feature 7"
         },
         {
@@ -1905,6 +1860,88 @@
       "updatedAt": "2025-05-08T07:25:18.828851Z",
       "status": "active",
       "units": 142
+    },
+    {
+      "name": "Product 2",
+      "category_id": 18,
+      "status": "active",
+      "units": 6,
+      "attributes": [
+        {
+          "code": "temp",
+          "value": "1",
+          "type": "string"
+        }
+      ],
+      "createdAt": "2025-05-31T11:27:13.293Z",
+      "updatedAt": "2025-05-31T12:01:56.554Z",
+      "id": 185
+    },
+    {
+      "name": "bars",
+      "category_id": 18,
+      "status": "active",
+      "units": 4,
+      "attributes": [],
+      "createdAt": "2025-05-31T12:01:14.841Z",
+      "updatedAt": "2025-05-31T12:01:48.767Z",
+      "id": 186
+    },
+    {
+      "name": "Electric 1",
+      "category_id": 17,
+      "status": "active",
+      "units": 0,
+      "attributes": [],
+      "createdAt": "2025-05-31T12:13:40.989Z",
+      "updatedAt": "2025-05-31T12:13:40.989Z",
+      "id": 187
+    },
+    {
+      "name": "sofa last",
+      "category_id": 4,
+      "status": "active",
+      "units": 0,
+      "attributes": [],
+      "createdAt": "2025-05-31T12:14:51.744Z",
+      "updatedAt": "2025-05-31T12:14:51.744Z",
+      "id": 188
+    },
+    {
+      "name": "recliner 2",
+      "category_id": 5,
+      "status": "active",
+      "units": 0,
+      "attributes": [],
+      "createdAt": "2025-05-31T12:17:23.147Z",
+      "updatedAt": "2025-05-31T12:17:23.147Z",
+      "id": 189
+    },
+    {
+      "name": "bars",
+      "category_id": 15,
+      "status": "active",
+      "units": 34,
+      "attributes": [
+        {
+          "code": "code",
+          "value": "string",
+          "type": "string"
+        }
+      ],
+      "createdAt": "2025-06-01T06:51:08.052Z",
+      "updatedAt": "2025-06-01T06:55:47.680Z",
+      "id": 190
+    },
+    {
+      "name": "bars 2",
+      "category_id": 15,
+      "status": "active",
+      "units": 265,
+      "attributes": [],
+      "createdAt": "2025-06-01T06:55:26.375Z",
+      "updatedAt": "2025-06-01T06:55:57.958Z",
+      "id": 191
     }
   ]
 }

@@ -1,7 +1,7 @@
 export interface Category {
   id: number
   name: string
-  parent_id?: number
+  parentId?: number
   children?: Category[]
 }
 
@@ -12,8 +12,8 @@ export const buildCategoryTree = (categories: Category[]): Category[] => {
   categories.forEach((cat) => map.set(cat.id, { ...cat, children: [] }))
 
   categories.forEach((cat) => {
-    if (cat.parent_id && map.has(cat.parent_id)) {
-      map.get(cat.parent_id)!.children.push(map.get(cat.id)!)
+    if (cat.parentId && map.has(cat.parentId)) {
+      map.get(cat.parentId)!.children.push(map.get(cat.id)!)
     } else {
       roots.push(map.get(cat.id)!)
     }

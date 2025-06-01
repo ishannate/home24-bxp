@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
-import { Typography, Spin, Collapse, Tag, Card } from "antd";
-import { fetchAllCategories } from "../../api/category";
-import { buildCategoryTree } from "../../utils/categoryTree";
+// src/components/CategoryList/CategoryListView.tsx
+import { Typography, Spin, Tag, Card, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import type { Category } from "../../types";
 import styles from "./index.module.css";
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  RightOutlined,
+  FileOutlined,
+  FolderOpenOutlined,
+} from "@ant-design/icons";
 
 const { Title, Text } = Typography;
-const { Panel } = Collapse;
 
-const CategoryListPage = () => {
-  const [categoryTree, setCategoryTree] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+interface CategoryListProps {
+  loading: boolean;
+  categoryTree: Category[];
+  activePanel: number | undefined;
+  setActivePanel: (id: number | undefined) => void;
+}
+
+const CategoryList = ({
+  loading,
+  categoryTree,
+  activePanel,
+  setActivePanel,
+}: CategoryListProps) => {
   const navigate = useNavigate();
-  const [activePanel, setActivePanel] = useState<string | string[]>("");
-
-  useEffect(() => {
-    const load = async () => {
-      const categories = await fetchAllCategories();
-      const tree = buildCategoryTree(categories);
-      setCategoryTree(tree.filter((cat) => !cat.parent_id));
-      setLoading(false);
-    };
-
-    load();
-  }, []);
 
   const renderSubcategories = (children?: Category[]) => {
     if (!children || children.length === 0) return null;
@@ -35,14 +35,18 @@ const CategoryListPage = () => {
         {children.map((child) => {
           const isLeaf = !child.children || child.children.length === 0;
           return (
-            <li key={child.id} className={isLeaf ? styles.leafItem : ""}>
-              <span className={styles.icon}>{isLeaf ? "📄" : "📁"}</span>
-              <span
-                className={`${isLeaf ? styles.leafLink : styles.nonLeaf}`}
+            <li key={child.id} className={styles.subcategoryItem}>
+              <Flex
+                className={`${styles.subcategoryLine} ${
+                  isLeaf ? styles.leafNode : styles.parentNode
+                }`}
                 onClick={() => isLeaf && navigate(`/category/${child.id}`)}
               >
-                {child.name}
-              </span>
+                <span className={styles.subcategoryIcon}>
+                  {isLeaf ? <FileOutlined /> : <FolderOpenOutlined />}
+                </span>
+                <Text className={styles.subcategoryName}>{child.name}</Text>
+              </Flex>
               {!isLeaf && renderSubcategories(child.children)}
             </li>
           );
@@ -53,63 +57,61 @@ const CategoryListPage = () => {
 
   if (loading) {
     return (
-      <Spin style={{ display: "block", margin: "80px auto" }} size="large" />
+      <Spin
+        data-testid="loading-spinner"
+        style={{ display: "block", margin: "80px auto" }}
+        size="large"
+      />
     );
   }
 
   return (
-    <div className={styles.container}>
-      <Title level={2} className={styles.pageTitle}>
+    <Flex className="container" vertical>
+      <Title level={2} className="pageTitle">
         Browse Categories
       </Title>
-      <Card className={styles.cardWrapper}>
-        <Collapse
-          accordion
-          expandIcon={({ isActive }) => (
-            <span className={styles.expandIconWrapper}>
-              {isActive ? <DownOutlined /> : <RightOutlined />}
-            </span>
-          )}
-          onChange={(key) => setActivePanel(key)}
-          activeKey={activePanel}
-          ghost
-        >
+      <Card className="cardWrapper">
+        <Flex className={styles.horizontalWrapper}>
           {categoryTree.map((cat) => {
-            const isActive = String(activePanel) === String(cat.id);
+            const isActive = activePanel === cat.id;
             return (
-              <Panel
+              <Flex
                 key={cat.id}
-                header={
-                  <div className={styles.panelHeader}>
-                    <div className={styles.panelHeaderLeft}>
-                      <span
-                        className={`${styles.categoryName} ${
-                          isActive ? styles.activeCategory : ""
-                        }`}
-                      >
-                        {cat.name}
-                      </span>
-                    </div>
-                    <div className={styles.panelHeaderRight}>
-                      <Tag className={styles.statusTag}>Active</Tag>
-                      <Text type="secondary">
-                        {cat.children?.length ?? 0} items
-                      </Text>
-                    </div>
-                  </div>
-                }
-                className={`${styles.panel} ${
-                  isActive ? styles.expandedPanel : ""
+                className={`${styles.customPanel} ${
+                  isActive ? styles.activePanel : ""
                 }`}
               >
-                {renderSubcategories(cat.children)}
-              </Panel>
+                <Flex
+                  className={styles.panelHeader}
+                  onClick={() => setActivePanel(isActive ? undefined : cat.id)}
+                >
+                  <Text className={styles.categoryName}>{cat.name}</Text>
+                  <Flex className={styles.panelMeta}>
+                    <Tag className={styles.statusTag}>Active</Tag>
+                    {isActive ? (
+                      <DownOutlined className={styles.toggleIcon} />
+                    ) : (
+                      <RightOutlined className={styles.toggleIcon} />
+                    )}
+                  </Flex>
+                </Flex>
+
+                <Flex
+                  className={`${styles.panelContent} ${
+                    isActive
+                      ? styles.panelContentExpanded
+                      : styles.panelContentCollapsed
+                  }`}
+                >
+                  {isActive && renderSubcategories(cat.children)}
+                </Flex>
+              </Flex>
             );
           })}
-        </Collapse>
+        </Flex>
       </Card>
-    </div>
+    </Flex>
   );
 };
 
-export default CategoryListPage;
+export default CategoryList;

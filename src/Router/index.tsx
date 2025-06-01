@@ -4,7 +4,8 @@ import { useAuthStore } from '../store/useAuthStore'
 import DashboardPage from '../pages/Dashboard'
 import MainLayout from '../components/Layout'
 import LoginPage from '../pages/Login'
-import CategoryPage from '../pages/CateogryPage'
+import CategoryProductsListPage from '../pages/CategoryProductListPage'
+import ProductDetailsPage from '../pages/ProductDetailsPage'
 
 const AppRouter = () => {
   const user = useAuthStore((state) => state.user)
@@ -18,7 +19,8 @@ const AppRouter = () => {
         {/* Protected layout */}
         <Route element={user ? <MainLayout /> : <Navigate to="/login" replace />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/category/:id" element={<CategoryPage />} />
+          <Route path="/category/:id" element={<CategoryProductsListPage />} />
+          <Route path="/product/:id" element={<ProductDetailsPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
