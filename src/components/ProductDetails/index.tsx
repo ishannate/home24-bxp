@@ -1,9 +1,7 @@
 import {
   Card,
-  Descriptions,
   Spin,
   Button,
-  Space,
   Typography,
   Flex,
 } from "antd";
@@ -39,52 +37,68 @@ const ProductDetails = ({
 
   return (
     <Flex className="container" vertical gap="large">
-      <Card className={styles.cardHeader}>
-        <Flex vertical style={{ marginBottom: "12px" }}>
-          <Title level={3} style={{ margin: 0 }}>
-            {product.name}
-          </Title>
-          <Text type="secondary">Product ID: {product.id}</Text>
-        </Flex>
-        <Space>
-          <Button icon={<EditOutlined />} onClick={onEdit}>
-            Edit
-          </Button>
-          <Button icon={<DeleteOutlined />} danger onClick={onDelete}>
-            Delete
-          </Button>
-        </Space>
-      </Card>
+      <Flex vertical>
+        <Title level={3} style={{ marginBottom: 8 }}>
+          {product.name}
+        </Title>
+        <Text type="secondary">Product ID: {product.id}</Text>
+      </Flex>
+      <Flex className={styles.buttonContainer}>
+        <Button icon={<EditOutlined />} onClick={onEdit}>
+          Edit
+        </Button>
+        <Button icon={<DeleteOutlined />} danger onClick={onDelete}>
+          Delete
+        </Button>
+      </Flex>
 
-      <Card className="cardWrapper" title="Product Details">
-        <Descriptions
-          column={1}
-          size="middle"
-          labelStyle={{ fontWeight: 500, width: 160 }}
-        >
-          <Descriptions.Item label="Category">
-            {category?.name}
-          </Descriptions.Item>
-          <Descriptions.Item label="Status">
+      <Card
+        className={`cardWrapper ${styles.cardWrapper}`}
+        title="Product Details"
+      >
+        <Flex className={styles.detailRow}>
+          <Text className={styles.detailLabel}>Category</Text>
+          <Text className={styles.detailValue}>{category?.name}</Text>
+        </Flex>
+
+        <Flex className={styles.detailRow}>
+          <Text className={styles.detailLabel}>Status</Text>
+          <Text className={styles.detailValue}>
             <Text type={product.status === "active" ? "success" : "danger"}>
               {product.status === "active" ? "Available" : "Unavailable"}
             </Text>
-          </Descriptions.Item>
-          <Descriptions.Item label="Units">{product.units}</Descriptions.Item>
-          <Descriptions.Item label="Created At">
+          </Text>
+        </Flex>
+
+        <Flex className={styles.detailRow}>
+          <Text className={styles.detailLabel}>Units</Text>
+          <Text className={styles.detailValue}>{product.units}</Text>
+        </Flex>
+
+        <Flex className={styles.detailRow}>
+          <Text className={styles.detailLabel}>Created At</Text>
+          <Text className={styles.detailValue}>
             {format(new Date(product.createdAt), "dd MMM yyyy, HH:mm")}
-          </Descriptions.Item>
-          <Descriptions.Item label="Updated At">
+          </Text>
+        </Flex>
+
+        <Flex className={styles.detailRow}>
+          <Text className={styles.detailLabel}>Updated At</Text>
+          <Text className={styles.detailValue}>
             {format(new Date(product.updatedAt), "dd MMM yyyy, HH:mm")}
-          </Descriptions.Item>
-          <Descriptions.Item label="Attributes">
-            {product.attributes.length > 0 ? (
-              <Flex vertical gap="small">
+          </Text>
+        </Flex>
+
+        <Flex className={styles.detailRow}>
+          <Text className={styles.detailLabel}>Attributes</Text>
+          <Text className={styles.detailValue}>
+            {product.attributes.length === 0 ? (
+              <Text type="secondary">No attributes</Text>
+            ) : (
+              <Flex vertical>
                 {product.attributes.map((attr) => (
-                  <Flex key={attr.code}>
-                    <Text strong style={{ paddingRight: 8 }}>
-                      {attr.code}:
-                    </Text>
+                  <Flex key={attr.code} className={styles.attributeRow}>
+                    <Text>{attr.code}</Text>
                     <Text>
                       {Array.isArray(attr.value)
                         ? attr.value.join(", ")
@@ -93,11 +107,9 @@ const ProductDetails = ({
                   </Flex>
                 ))}
               </Flex>
-            ) : (
-              <Text type="secondary">No attributes</Text>
             )}
-          </Descriptions.Item>
-        </Descriptions>
+          </Text>
+        </Flex>
       </Card>
     </Flex>
   );

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import ProductForm from "../ProductForm";
 import { fetchLeafCategories } from "../../../api/category";
 
@@ -22,28 +22,32 @@ describe("ProductForm", () => {
   });
 
   it("renders the form with initial values", async () => {
-    render(
-      <ProductForm
-        mode="create"
-        defaultCategoryId={1}
-        onSubmit={onSubmitMock}
-        onCancel={onCancelMock}
-      />
-    );
+    await act(async () => {
+      render(
+        <ProductForm
+          mode="create"
+          defaultCategoryId={1}
+          onSubmit={onSubmitMock}
+          onCancel={onCancelMock}
+        />
+      );
+    });
 
     expect(await screen.findByPlaceholderText("Enter product name")).toBeInTheDocument();
     expect(screen.getByText("Add Attribute")).toBeInTheDocument();
   });
 
   it("submits form when valid", async () => {
-    render(
-      <ProductForm
-        mode="create"
-        defaultCategoryId={1}
-        onSubmit={onSubmitMock}
-        onCancel={onCancelMock}
-      />
-    );
+    await act(async () => {
+      render(
+        <ProductForm
+          mode="create"
+          defaultCategoryId={1}
+          onSubmit={onSubmitMock}
+          onCancel={onCancelMock}
+        />
+      );
+    });
 
     fireEvent.change(screen.getByPlaceholderText("Enter product name"), {
       target: { value: "iPhone 15" },
@@ -69,14 +73,16 @@ describe("ProductForm", () => {
   });
 
   it("calls onCancel when cancel button is clicked", async () => {
-    render(
-      <ProductForm
-        mode="create"
-        defaultCategoryId={1}
-        onSubmit={onSubmitMock}
-        onCancel={onCancelMock}
-      />
-    );
+    await act(async () => {
+      render(
+        <ProductForm
+          mode="create"
+          defaultCategoryId={1}
+          onSubmit={onSubmitMock}
+          onCancel={onCancelMock}
+        />
+      );
+    });
 
     fireEvent.click(screen.getByText("Cancel"));
 

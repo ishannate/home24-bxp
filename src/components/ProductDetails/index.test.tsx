@@ -12,7 +12,7 @@ const mockProduct: Product = {
   createdAt: "2024-01-01T10:00:00Z",
   updatedAt: "2024-01-05T15:30:00Z",
   attributes: [
-    { code: "color", value: "blue", type: 'text' },
+    { code: "color", value: "blue", type: "text" },
   ],
 };
 
@@ -22,20 +22,23 @@ const mockCategory: Category = {
   parentId: undefined,
 };
 
-const mockHandlers = {
-  onEdit: jest.fn(),
-  onDelete: jest.fn(),
-};
-
 describe("ProductDetails", () => {
+  let onEditMock: jest.Mock;
+  let onDeleteMock: jest.Mock;
+
+  beforeEach(() => {
+    onEditMock = jest.fn();
+    onDeleteMock = jest.fn();
+  });
+
   it("renders product details correctly", () => {
     render(
       <ProductDetails
         product={mockProduct}
         category={mockCategory}
         loading={false}
-        onEdit={mockHandlers.onEdit}
-        onDelete={mockHandlers.onDelete}
+        onEdit={onEditMock}
+        onDelete={onDeleteMock}
       />
     );
 
@@ -44,13 +47,16 @@ describe("ProductDetails", () => {
     expect(screen.getByText("T-Shirts")).toBeInTheDocument();
     expect(screen.getByText("Available")).toBeInTheDocument();
     expect(screen.getByText("100")).toBeInTheDocument();
+
     expect(
       screen.getByText(format(new Date(mockProduct.createdAt), "dd MMM yyyy, HH:mm"))
     ).toBeInTheDocument();
+
     expect(
       screen.getByText(format(new Date(mockProduct.updatedAt), "dd MMM yyyy, HH:mm"))
     ).toBeInTheDocument();
-    expect(screen.getByText("color:")).toBeInTheDocument();
+
+    expect(screen.getByText("color")).toBeInTheDocument();
     expect(screen.getByText("blue")).toBeInTheDocument();
   });
 
@@ -60,13 +66,13 @@ describe("ProductDetails", () => {
         product={mockProduct}
         category={mockCategory}
         loading={false}
-        onEdit={mockHandlers.onEdit}
-        onDelete={mockHandlers.onDelete}
+        onEdit={onEditMock}
+        onDelete={onDeleteMock}
       />
     );
 
     fireEvent.click(screen.getByRole("button", { name: /edit/i }));
-    expect(mockHandlers.onEdit).toHaveBeenCalled();
+    expect(onEditMock).toHaveBeenCalledTimes(1);
   });
 
   it("calls onDelete when Delete button is clicked", () => {
@@ -75,12 +81,12 @@ describe("ProductDetails", () => {
         product={mockProduct}
         category={mockCategory}
         loading={false}
-        onEdit={mockHandlers.onEdit}
-        onDelete={mockHandlers.onDelete}
+        onEdit={onEditMock}
+        onDelete={onDeleteMock}
       />
     );
 
     fireEvent.click(screen.getByRole("button", { name: /delete/i }));
-    expect(mockHandlers.onDelete).toHaveBeenCalled();
+    expect(onDeleteMock).toHaveBeenCalledTimes(1);
   });
 });

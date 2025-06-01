@@ -1,24 +1,27 @@
-import '@testing-library/jest-dom';
-import { TextEncoder as NodeTextEncoder, TextDecoder as NodeTextDecoder } from 'util';
+import "@testing-library/jest-dom";
+import {
+  TextEncoder as NodeTextEncoder,
+  TextDecoder as NodeTextDecoder,
+} from "util";
 
-if (typeof globalThis.TextEncoder === 'undefined') {
-  Object.defineProperty(globalThis, 'TextEncoder', {
+if (typeof globalThis.TextEncoder === "undefined") {
+  Object.defineProperty(globalThis, "TextEncoder", {
     value: NodeTextEncoder,
     configurable: true,
     writable: true,
   });
 }
 
-if (typeof globalThis.TextDecoder === 'undefined') {
-  Object.defineProperty(globalThis, 'TextDecoder', {
+if (typeof globalThis.TextDecoder === "undefined") {
+  Object.defineProperty(globalThis, "TextDecoder", {
     value: NodeTextDecoder,
     configurable: true,
     writable: true,
   });
 }
 
-if (typeof window.matchMedia !== 'function') {
-  Object.defineProperty(window, 'matchMedia', {
+if (typeof window.matchMedia !== "function") {
+  Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: (query: string) => ({
       matches: false,
@@ -32,3 +35,10 @@ if (typeof window.matchMedia !== 'function') {
     }),
   });
 }
+window.getComputedStyle = (
+  _element: Element,
+  _pseudoElt?: string | null
+): CSSStyleDeclaration =>
+  ({
+    getPropertyValue: () => "",
+  } as unknown as CSSStyleDeclaration);
