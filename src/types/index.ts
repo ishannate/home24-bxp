@@ -53,7 +53,7 @@ export interface ProductInput {
 export type ProductRequest = {
   id?: number
   name?: string
-  categoryId?: number
+  category_id?: number
   attributes?: AttributeValue[]
   createdAt?: string;
   updatedAt?: string;

@@ -13,7 +13,12 @@ import { format } from "date-fns";
 
 import type { TablePaginationConfig } from "antd/es/table";
 import type { SorterResult } from "antd/es/table/interface";
-import type { AttributeValue, Product, ProductInput, Category } from "../../types";
+import type {
+  AttributeValue,
+  Product,
+  ProductInput,
+  Category,
+} from "../../types";
 
 import LastUpdatedProductWidget from "../LastUpdatedProductWidget";
 import ProductDrawer from "../Shared/ProductDrawer";
@@ -145,7 +150,7 @@ const CategoryProductList = ({
             <Button
               type="text"
               icon={<EditOutlined />}
-              onClick={(e: { stopPropagation: () => void; }) => {
+              onClick={(e: { stopPropagation: () => void }) => {
                 e.stopPropagation();
                 onEdit(record);
               }}
@@ -155,7 +160,7 @@ const CategoryProductList = ({
             <Button
               type="text"
               icon={<DeleteOutlined style={{ color: "red" }} />}
-              onClick={(e: { stopPropagation: () => void; }) => {
+              onClick={(e: { stopPropagation: () => void }) => {
                 e.stopPropagation();
                 onDeleteIntent(record);
               }}
@@ -205,13 +210,15 @@ const CategoryProductList = ({
         </Space>
       </Card>
 
-      <ProductDrawer
-        open={drawerOpen}
-        onClose={closeDrawer}
-        onSubmit={onSubmit}
-        mode={editingProduct ? "edit" : "create"}
-        initialValues={editingProduct}
-      />
+      {drawerOpen && (
+        <ProductDrawer
+          open={drawerOpen}
+          onClose={closeDrawer}
+          onSubmit={onSubmit}
+          mode={editingProduct ? "edit" : "create"}
+          initialValues={editingProduct}
+        />
+      )}
 
       <ConfirmDeleteModal
         open={deleteModalOpen}

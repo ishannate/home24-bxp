@@ -79,8 +79,10 @@ export const getProductById = async (id: number | string): Promise<Product> => {
 
 export const createProduct = async (values: ProductInput): Promise<Product> => {
   try {
+    const { categoryId, ...rest } = values;
     const product: ProductRequest = {
-      ...values,
+      ...rest,
+      category_id: categoryId,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

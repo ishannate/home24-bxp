@@ -94,6 +94,7 @@ const CategoryProductListPage = () => {
         navigate(`/category/${values.categoryId}`);
       } else {
         setLastUpdatedProductId(editingProduct?.id);
+         setEditingProduct(undefined);
       }
     }
   };
