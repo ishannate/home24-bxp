@@ -47,7 +47,8 @@
 
 :global(.ant-table-thead > tr > th) {
   border: none !important;
-  background: #fafafa;
+  background: #2c3965 !important;
+  color: #fff !important
 }
 
 /* Responsive adjustments */

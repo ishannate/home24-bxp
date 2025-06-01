@@ -82,7 +82,7 @@ const LastUpdatedProductWidget = ({
         <DoubleLeftOutlined className={styles.chevron} />
         {product.name}
       </div>
-      {!isCategoryBased && <div> Category : {fetchCategoryDetails()}</div>}
+      {!isCategoryBased && <div className={styles.widgetSubtitle}> Category : {fetchCategoryDetails()}</div>}
       <div className={styles.widgetSubtitle}>
         Last updated at:
         <div className={styles.widgetTime}>{formattedDate}</div>

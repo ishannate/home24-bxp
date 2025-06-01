@@ -21,21 +21,34 @@ const CategoryProductListPage = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product>();
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [lastUpdatedProductId, setLastUpdatedProductId] = useState<number>();
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
   const [deleting, setDeleting] = useState(false);
-  const [lastUpdatedProductId, setLastUpdatedProductId] = useState<number>();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [formState, setFormState] = useState<{
+    open: boolean;
+    editingProduct?: Product;
+  }>({ open: false });
 
-  const [pagination, setPagination] = useState<TablePaginationConfig>({
+ const [tableConfig, setTableConfig] = useState<{
+  pagination: TablePaginationConfig;
+  sorter: {
+    field?: string;
+    order?: 'ascend' | 'descend';
+  };
+}>({
+  pagination: {
     current: 1,
     pageSize: 10,
+    total: 0,
     showSizeChanger: true,
     pageSizeOptions: ["5", "10", "20", "50"],
-  });
-
-  const [sorter, setSorter] = useState<{ field?: string; order?: string }>({});
+  },
+  sorter: {
+    field: undefined,
+    order: undefined,
+  },
+});
 
   const fetchProducts = useCallback(async () => {
     if (!id) return;
@@ -43,19 +56,22 @@ const CategoryProductListPage = () => {
     try {
       const { data, total } = await fetchProductsByCategory({
         categoryId: id,
-        page: pagination.current,
-        limit: pagination.pageSize,
-        sortField: sorter.field,
-        sortOrder: sorter.order as "ascend" | "descend",
+        page: tableConfig.pagination.current,
+        limit: tableConfig.pagination.pageSize,
+        sortField: tableConfig.sorter.field,
+        sortOrder: tableConfig.sorter.order as unknown as "ascend" | "descend",
       });
       setProducts(data);
-      setPagination((prev) => ({ ...prev, total }));
+      setTableConfig((prev) => ({
+        ...prev,
+        pagination: { ...prev.pagination, total },
+      }));
     } catch {
       message.error("Failed to load products.");
     } finally {
       setLoading(false);
     }
-  }, [id, pagination.current, pagination.pageSize, sorter]);
+  }, [id, tableConfig.pagination.current, tableConfig.pagination.pageSize, tableConfig.sorter]);
 
   useEffect(() => {
     fetchProducts();
@@ -72,14 +88,17 @@ const CategoryProductListPage = () => {
       singleSorter?.order === "ascend" || singleSorter?.order === "descend"
         ? singleSorter.order
         : undefined;
-    setPagination(newPagination);
-    setSorter({ field: sortField, order: sortOrder });
+
+    setTableConfig({
+      pagination: newPagination,
+      sorter: { field: sortField, order: sortOrder },
+    });
   };
 
   const handleAddEditProduct = async (values: ProductInput) => {
     try {
-      if (editingProduct?.id) {
-        await updateProduct(editingProduct.id, values);
+      if (formState.editingProduct?.id) {
+        await updateProduct(formState.editingProduct.id, values);
         message.success("Product updated successfully");
       } else {
         await createProduct(values);
@@ -89,12 +108,11 @@ const CategoryProductListPage = () => {
     } catch (error) {
       message.error(getErrorMessage(error));
     } finally {
-      setDrawerOpen(false);
+      setFormState({ open: false });
       if (selectedCategory?.id !== values.categoryId) {
         navigate(`/category/${values.categoryId}`);
       } else {
-        setLastUpdatedProductId(editingProduct?.id);
-         setEditingProduct(undefined);
+        setLastUpdatedProductId(formState.editingProduct?.id);
       }
     }
   };
@@ -115,41 +133,43 @@ const CategoryProductListPage = () => {
     }
   };
 
+  const openDrawer = useCallback(
+    (product?: Product) => setFormState({ open: true, editingProduct: product }),
+    []
+  );
+
+  const closeDrawer = useCallback(() => setFormState({ open: false }), []);
+
+  const cancelDelete = useCallback(() => {
+    setDeleteModalOpen(false);
+    setProductToDelete(null);
+  }, []);
+
   return (
     <CategoryProductList
-          products={products}
-          loading={loading}
-          drawerOpen={drawerOpen}
-          editingProduct={editingProduct}
-          deleteModalOpen={deleteModalOpen}
-          productToDelete={productToDelete}
-          deleting={deleting}
-          pagination={pagination}
-          selectedCategory={selectedCategory}
-          lastUpdatedProductId={lastUpdatedProductId}
-          onTableChange={handleTableChange}
-          onSubmit={handleAddEditProduct}
-          onDelete={onDeleteProduct}
-          openDrawer={() => setDrawerOpen(true)}
-          closeDrawer={() => {
-              setDrawerOpen(false);
-              setEditingProduct(undefined);
-          } }
-          onEdit={(product: Product) => {
-              setEditingProduct(product);
-              setDrawerOpen(true);
-          } }
-          onDeleteIntent={(product: Product) => {
-              setProductToDelete(product);
-              setDeleteModalOpen(true);
-          } }
-          onCancelDelete={() => {
-              setDeleteModalOpen(false);
-              setProductToDelete(null);
-          } } sorter={{
-              field: undefined,
-              order: undefined
-          }}    />
+      products={products}
+      loading={loading}
+      drawerOpen={formState.open}
+      editingProduct={formState.editingProduct}
+      deleteModalOpen={deleteModalOpen}
+      productToDelete={productToDelete}
+      deleting={deleting}
+      pagination={tableConfig.pagination}
+      sorter={tableConfig.sorter}
+      selectedCategory={selectedCategory}
+      lastUpdatedProductId={lastUpdatedProductId}
+      onTableChange={handleTableChange}
+      onSubmit={handleAddEditProduct}
+      onDelete={onDeleteProduct}
+      openDrawer={openDrawer}
+      closeDrawer={closeDrawer}
+      onEdit={openDrawer}
+      onDeleteIntent={(product) => {
+        setProductToDelete(product);
+        setDeleteModalOpen(true);
+      }}
+      onCancelDelete={cancelDelete}
+    />
   );
 };
 

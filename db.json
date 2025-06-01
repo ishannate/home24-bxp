@@ -236,14 +236,15 @@
       "id": 6
     },
     {
-      "name": "asd",
+      "name": "pest sofa",
       "status": "active",
       "units": 0,
       "attributes": [],
       "category_id": 4,
       "createdAt": "2025-06-01T12:13:06.978Z",
-      "updatedAt": "2025-06-01T12:13:06.978Z",
-      "id": 7
+      "updatedAt": "2025-06-01T13:03:38.445Z",
+      "id": 7,
+      "categoryId": 4
     }
   ]
 }
