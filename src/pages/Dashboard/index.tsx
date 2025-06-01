@@ -42,7 +42,7 @@ const DashboardPage = () => {
           Browse Categories
         </Title>
       </Flex>
-      <LastUpdatedProductWidget isCategoryBased={false} />
+      <LastUpdatedProductWidget isCategoryBased={false} categoryList={categoryList}/>
       <CategoryList
         loading={loading}
         categoryTree={categoryTree}

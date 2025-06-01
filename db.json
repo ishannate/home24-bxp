@@ -618,9 +618,10 @@
         }
       ],
       "createdAt": "2025-05-15T07:25:18.828059Z",
-      "updatedAt": "2025-05-19T07:25:18.828059Z",
-      "status": "inactive",
-      "units": 47
+      "updatedAt": "2025-06-01T11:08:20.235Z",
+      "status": "active",
+      "units": 470,
+      "categoryId": 4
     },
     {
       "id": 123,

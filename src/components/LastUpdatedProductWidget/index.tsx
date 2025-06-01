@@ -3,21 +3,21 @@ import { fetchAllProducts, fetchProductsByCategory } from "../../api/product";
 import type { Category, Product } from "../../types";
 import styles from "./index.module.css";
 import { DoubleLeftOutlined } from "@ant-design/icons";
-import { useCategoryStore } from "../../store/useCategoryStore";
 
 interface LastUpdatedProductWidgetProps {
   categoryId?: string;
   lastUpdatedProductId?: number;
   isCategoryBased?: boolean;
+  categoryList?: Category[]
 }
 
 const LastUpdatedProductWidget = ({
   categoryId,
   lastUpdatedProductId,
   isCategoryBased = true,
+  categoryList
 }: LastUpdatedProductWidgetProps) => {
   const [product, setProduct] = useState<Product | null>(null);
-  const { categoryList } = useCategoryStore();
 
   const fetchLastUpdatedProduct = async () => {
     try {
@@ -50,7 +50,7 @@ const LastUpdatedProductWidget = ({
   }, [categoryId, isCategoryBased]);
 
   const fetchCategoryDetails = () => {
-    if (product && categoryList.length > 0) {
+    if (product && categoryList && categoryList.length > 0) {
       const category = categoryList.find(
         (category: Category) => category.id === product?.categoryId
       );
