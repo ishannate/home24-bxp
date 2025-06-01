@@ -1,31 +1,44 @@
 import { useEffect, useState } from "react";
-import { fetchProductsByCategory } from "../../api/product";
-import type { Product } from "../../types";
+import { fetchAllProducts, fetchProductsByCategory } from "../../api/product";
+import type { Category, Product } from "../../types";
 import styles from "./index.module.css";
 import { DoubleLeftOutlined } from "@ant-design/icons";
+import { useCategoryStore } from "../../store/useCategoryStore";
 
 interface LastUpdatedProductWidgetProps {
-  categoryId: string;
+  categoryId?: string;
   lastUpdatedProductId?: number;
+  isCategoryBased?: boolean;
 }
 
 const LastUpdatedProductWidget = ({
   categoryId,
   lastUpdatedProductId,
+  isCategoryBased = true,
 }: LastUpdatedProductWidgetProps) => {
   const [product, setProduct] = useState<Product | null>(null);
+  const { categoryList } = useCategoryStore();
 
   const fetchLastUpdatedProduct = async () => {
     try {
-      const { data } = await fetchProductsByCategory({
-        categoryId,
-        sortField: "updatedAt",
-        sortOrder: "descend",
-        page: 1,
-        limit: 1,
-      });
-
-      setProduct(data[0]);
+      if (isCategoryBased && categoryId) {
+        const { data } = await fetchProductsByCategory({
+          categoryId,
+          sortField: "updatedAt",
+          sortOrder: "descend",
+          page: 1,
+          limit: 1,
+        });
+        setProduct(data[0]);
+      } else if (!isCategoryBased && !categoryId) {
+        const { data } = await fetchAllProducts({
+          sortField: "updatedAt",
+          sortOrder: "descend",
+          page: 1,
+          limit: 1,
+        });
+        setProduct(data[0]);
+      }
     } catch (error) {
       console.error("Failed to fetch last updated product", error);
     }
@@ -33,7 +46,18 @@ const LastUpdatedProductWidget = ({
 
   useEffect(() => {
     fetchLastUpdatedProduct();
-  }, [categoryId]);
+    fetchCategoryDetails();
+  }, [categoryId, isCategoryBased]);
+
+  const fetchCategoryDetails = () => {
+    if (product && categoryList.length > 0) {
+      const category = categoryList.find(
+        (category: Category) => category.id === product?.categoryId
+      );
+
+      return category?.name;
+    }
+  };
 
   useEffect(() => {
     if (
@@ -58,8 +82,9 @@ const LastUpdatedProductWidget = ({
         <DoubleLeftOutlined className={styles.chevron} />
         {product.name}
       </div>
+      {!isCategoryBased && <div> Category : {fetchCategoryDetails()}</div>}
       <div className={styles.widgetSubtitle}>
-        Last updated at
+        Last updated at:
         <div className={styles.widgetTime}>{formattedDate}</div>
       </div>
     </div>

@@ -35,7 +35,7 @@ export interface User {
 }
 
 export interface ProductQueryParams {
-  categoryId: string
+  categoryId?: string
   page?: number
   limit?: number
   sortField?: string

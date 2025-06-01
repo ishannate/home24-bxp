@@ -9,7 +9,7 @@ import {
   FolderOpenOutlined,
 } from "@ant-design/icons";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 interface CategoryListProps {
   loading: boolean;
@@ -65,51 +65,46 @@ const CategoryList = ({
   }
 
   return (
-    <Flex className="container" vertical>
-      <Title level={2} className="pageTitle">
-        Browse Categories
-      </Title>
-      <Card className="cardWrapper">
-        <Flex className={styles.horizontalWrapper}>
-          {categoryTree.map((cat) => {
-            const isActive = activePanel === cat.id;
-            return (
+    <Card className="cardWrapper">
+      <Flex className={styles.horizontalWrapper}>
+        {categoryTree.map((cat) => {
+          const isActive = activePanel === cat.id;
+          return (
+            <Flex
+              key={cat.id}
+              className={`${styles.customPanel} ${
+                isActive ? styles.activePanel : ""
+              }`}
+            >
               <Flex
-                key={cat.id}
-                className={`${styles.customPanel} ${
-                  isActive ? styles.activePanel : ""
-                }`}
+                className={styles.panelHeader}
+                onClick={() => setActivePanel(isActive ? undefined : cat.id)}
               >
-                <Flex
-                  className={styles.panelHeader}
-                  onClick={() => setActivePanel(isActive ? undefined : cat.id)}
-                >
-                  <Text className={styles.categoryName}>{cat.name}</Text>
-                  <Flex className={styles.panelMeta}>
-                    <Tag className={styles.statusTag}>Active</Tag>
-                    {isActive ? (
-                      <DownOutlined className={styles.toggleIcon} />
-                    ) : (
-                      <RightOutlined className={styles.toggleIcon} />
-                    )}
-                  </Flex>
-                </Flex>
-
-                <Flex
-                  className={`${styles.panelContent} ${
-                    isActive
-                      ? styles.panelContentExpanded
-                      : styles.panelContentCollapsed
-                  }`}
-                >
-                  {isActive && renderSubcategories(cat.children)}
+                <Text className={styles.categoryName}>{cat.name}</Text>
+                <Flex className={styles.panelMeta}>
+                  <Tag className={styles.statusTag}>Active</Tag>
+                  {isActive ? (
+                    <DownOutlined className={styles.toggleIcon} />
+                  ) : (
+                    <RightOutlined className={styles.toggleIcon} />
+                  )}
                 </Flex>
               </Flex>
-            );
-          })}
-        </Flex>
-      </Card>
-    </Flex>
+
+              <Flex
+                className={`${styles.panelContent} ${
+                  isActive
+                    ? styles.panelContentExpanded
+                    : styles.panelContentCollapsed
+                }`}
+              >
+                {isActive && renderSubcategories(cat.children)}
+              </Flex>
+            </Flex>
+          );
+        })}
+      </Flex>
+    </Card>
   );
 };
 
