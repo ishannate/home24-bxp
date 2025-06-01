@@ -13,7 +13,7 @@ const DrawerWrapper = ({
   open,
   onClose,
   title,
-  width = 400,
+  width = 600,
   children,
 }: DrawerWrapperProps) => {
   return (
@@ -23,7 +23,6 @@ const DrawerWrapper = ({
       onClose={onClose}
       open={open}
       width={width}
-      destroyOnClose
     >
       {children}
     </Drawer>

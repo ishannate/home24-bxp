@@ -1,4 +1,4 @@
-import axios from "./client";
+import client from "./client";
 import type { AxiosError } from "axios";
 import type {
   Product,
@@ -15,7 +15,7 @@ export const fetchProductsByCategory = async ({
   sortOrder,
 }: ProductQueryParams): Promise<{ data: Product[]; total: number }> => {
   try {
-    const response = await axios.get("/products", {
+    const response = await client.get("/products", {
       params: {
         categoryId: categoryId,
         _page: page,
@@ -42,7 +42,7 @@ export const getProductById = async (
   id: number | string
 ): Promise<Product> => {
   try {
-    const response = await axios.get(`/products/${id}`);
+    const response = await client.get(`/products/${id}`);
     return response.data;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
@@ -57,7 +57,7 @@ export const createProduct = async (values: ProductInput): Promise<Product> => {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-    const response = await axios.post("/products", product);
+    const response = await client.post("/products", product);
     return response.data;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
@@ -74,7 +74,7 @@ export const updateProduct = async (
       ...values,
       updatedAt: new Date().toISOString(),
     };
-    const response = await axios.patch(`/products/${id}`, product);
+    const response = await client.patch(`/products/${id}`, product);
     return response.data;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
@@ -84,7 +84,7 @@ export const updateProduct = async (
 
 export const deleteProduct = async (id: number): Promise<boolean> => {
   try {
-    const response = await axios.delete(`/products/${id}`);
+    const response = await client.delete(`/products/${id}`);
     return response.status === 204;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;

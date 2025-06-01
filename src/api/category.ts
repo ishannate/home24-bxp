@@ -1,10 +1,10 @@
-import axios from "./client";
+import client from "./client";
 import type { Category } from "../types";
 import type { AxiosError } from "axios";
 
 export const fetchAllCategories = async (): Promise<Category[]> => {
   try {
-    const response = await axios.get<Category[]>("/categories");
+    const response = await client.get<Category[]>("/categories");
     return response.data;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
@@ -16,7 +16,7 @@ export const fetchAllCategories = async (): Promise<Category[]> => {
 
 export const fetchLeafCategories = async (): Promise<Category[]> => {
   try {
-    const response = await axios.get<Category[]>("/categories");
+    const response = await client.get<Category[]>("/categories");
 
     const allCategories = response.data;
 

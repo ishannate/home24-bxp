@@ -1,26 +1,28 @@
+
 .horizontalWrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: flex-start;
- 
 }
 
 .customPanel {
-  background: #e1fafb;
-  border-radius: 10px;
-  padding: 16px;
+  background: #dff1fb;
+  border-radius: 12px;
+  padding: 16px 20px;
   width: 300px;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  border: 1px solid transparent;
 }
 
 .activePanel {
-  border: 2px solid #1890ff;
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 
 .panelHeader {
@@ -38,40 +40,43 @@
 .categoryName {
   font-size: 16px;
   font-weight: 600;
-}
-
-.toggleIcon {
-  font-size: 14px;
-  color: #1890ff;
+  color: #222;
 }
 
 .statusTag {
-  border-radius: 8px;
-  padding: 2px 8px;
+  border-radius: 6px;
   background: #e6f7ff;
   color: #1890ff;
+  font-size: 12px;
   font-weight: 500;
+  padding: 2px 10px;
+  line-height: 1;
+}
+
+.toggleIcon {
+  font-size: 12px;
+  color: #1890ff;
 }
 
 .panelContent {
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, padding-top 0.3s ease;
 }
 
 .panelContentCollapsed {
   max-height: 0;
-  padding: 0;
+  padding-top: 0;
 }
 
 .panelContentExpanded {
-  max-height: 1000px; /* or auto with animation tricks */
+  max-height: 1000px;
   padding-top: 12px;
 }
 
 .subcategoryList {
   list-style: none;
-  padding-left: 20px;
-  margin: 8px 0 0;
+  padding-left: 16px;
+  margin: 0;
 }
 
 .subcategoryItem {
@@ -81,34 +86,34 @@
 .subcategoryLine {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 0;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
 .subcategoryLine:hover {
-  background-color: #d8eefc;
-  border-radius: 4px;
-  padding-left: 4px;
+  background: #d6ecff;
+}
+
+.subcategoryIcon {
+  font-size: 14px;
+  color: #666;
+}
+
+.subcategoryName {
+  flex-grow: 1;
+  font-size: 14px;
 }
 
 .leafNode {
-  color: #1f1f1f;
   font-weight: 400;
+  color: #333;
+  cursor: pointer;
 }
 
 .parentNode {
   font-weight: 600;
   color: #333;
   cursor: default;
-}
-
-.subcategoryIcon {
-  font-size: 14px;
-  color: #555;
-}
-
-.subcategoryName {
-  flex-grow: 1;
 }

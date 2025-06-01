@@ -1,4 +1,4 @@
-import axios from "./client";
+import client from "./client";
 import { isAxiosError } from "axios";
 import type { User } from "../types";
 
@@ -7,7 +7,7 @@ export async function login(
   password: string
 ): Promise<{ user: User; token: string }> {
   try {
-    const response = await axios.get<User[]>("/users", {
+    const response = await client.get<User[]>("/users", {
       params: { email, password },
     });
 
