@@ -96,6 +96,8 @@ npm run test:coverage
 src/
 ├── api/                  # API calls using axios
 ├── components/           # Reusable components (ProductDrawer, CategoryList, etc.)
+|__ pages/                # Logic integrated pages
+|
 ├── store/                # Global state (Zustand)
 ├── types/                # TypeScript interfaces and types
 ├── utils/                # Helpers (e.g. error messages, tree builders)
@@ -128,7 +130,7 @@ VITE_API_BASE_URL=http://localhost:3001
 
 ## 🧼 Git Ignore
 
-Make sure your `.gitignore` includes:
+`.gitignore` includes everything that should not be committed to the git specially the below mentioned:
 
 ```bash
 node_modules
@@ -140,11 +142,9 @@ coverage
 ---
 
 ## 🧠 Future Improvements
-
-- Backend authentication
-- Pagination from API
+- Category crud functions
 - Role-based access
-- CI/CD pipeline with GitHub Actions
+- Session management
 
 ---
 
