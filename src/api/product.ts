@@ -83,8 +83,8 @@ export const createProduct = async (values: ProductInput): Promise<Product> => {
     const product: ProductRequest = {
       ...rest,
       category_id: categoryId,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     };
     const response = await client.post("/products", product);
     return response.data;
@@ -101,7 +101,7 @@ export const updateProduct = async (
   try {
     const product: ProductRequest = {
       ...values,
-      updatedAt: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     };
     const response = await client.patch(`/products/${id}`, product);
     return response.data;

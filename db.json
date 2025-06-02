@@ -11,240 +11,152 @@
     {
       "id": 1,
       "name": "Furniture",
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 2,
       "name": "Living Room",
       "parent_id": 1,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 3,
       "name": "Bedroom",
       "parent_id": 1,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 4,
       "name": "Sofas",
       "parent_id": 2,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 5,
       "name": "Recliners",
       "parent_id": 2,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 6,
       "name": "Beds",
       "parent_id": 3,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 7,
       "name": "Wardrobes",
       "parent_id": 3,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 8,
       "name": "Office",
       "parent_id": 1,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 9,
       "name": "Chairs",
       "parent_id": 8,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 10,
       "name": "Tables",
       "parent_id": 8,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 11,
       "name": "Household",
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 12,
       "name": "Cleaning Supplies",
       "parent_id": 11,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 13,
       "name": "Kitchen Storage",
       "parent_id": 11,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 14,
       "name": "Garden",
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 15,
       "name": "Outdoor Furniture",
       "parent_id": 14,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 16,
       "name": "Gardening Tools",
       "parent_id": 14,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 17,
       "name": "Electric Appliances",
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 18,
       "name": "Kitchen Appliances",
       "parent_id": 17,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     },
     {
       "id": 19,
       "name": "Home Electronics",
       "parent_id": 17,
-      "createdAt": "2025-05-19T07:25:18.827755Z",
+      "created_at": "2025-05-19T07:25:18.827755Z",
       "status": "active"
     }
   ],
   "products": [
     {
-      "name": "Wooden sofa",
-      "status": "active",
-      "units": 12,
-      "attributes": [
-        {
-          "code": "Price",
-          "value": "126",
-          "type": "number"
-        }
-      ],
-      "category_id": 4,
-      "createdAt": "2025-06-01T12:08:04.243Z",
-      "updatedAt": "2025-06-01T12:08:04.243Z",
-      "id": 1
-    },
-    {
-      "name": "Cushioned sofa",
-      "status": "inactive",
-      "units": 12,
-      "attributes": [
-        {
-          "code": "Price",
-          "value": "500",
-          "type": "number"
-        }
-      ],
-      "category_id": 4,
-      "createdAt": "2025-06-01T12:08:17.840Z",
-      "updatedAt": "2025-06-01T12:08:17.840Z",
-      "id": 2
-    },
-    {
-      "name": "Cane sofa",
-      "status": "active",
-      "units": 20,
-      "attributes": [
-        {
-          "code": "Price",
-          "value": "200",
-          "type": "number"
-        }
-      ],
-      "category_id": 4,
-      "createdAt": "2025-06-01T12:08:45.610Z",
-      "updatedAt": "2025-06-01T12:08:45.610Z",
-      "id": 3
-    },
-    {
-      "name": "Cane cushioned sofa",
-      "status": "active",
-      "units": 20,
-      "attributes": [
-        {
-          "code": "Price",
-          "value": "200",
-          "type": "number"
-        }
-      ],
-      "category_id": 4,
-      "createdAt": "2025-06-01T12:10:44.098Z",
-      "updatedAt": "2025-06-01T12:10:44.099Z",
-      "id": 4
-    },
-    {
-      "name": "Cane cushioned sofa 2",
-      "status": "active",
-      "units": 20,
-      "attributes": [
-        {
-          "code": "Price",
-          "value": "200",
-          "type": "number"
-        }
-      ],
-      "category_id": 4,
-      "createdAt": "2025-06-01T12:12:10.147Z",
-      "updatedAt": "2025-06-01T12:12:10.147Z",
-      "id": 5
-    },
-    {
-      "name": "Cane cushioned sofa 3",
-      "status": "active",
-      "units": 20,
-      "attributes": [
-        {
-          "code": "Price",
-          "value": "200",
-          "type": "number"
-        }
-      ],
-      "category_id": 4,
-      "createdAt": "2025-06-01T12:12:38.230Z",
-      "updatedAt": "2025-06-01T12:12:38.230Z",
-      "id": 6
-    },
-    {
-      "name": "pest sofa",
+      "name": "asd",
       "status": "active",
       "units": 0,
-      "attributes": [],
+      "attributes": [
+        {
+          "code": "temp",
+          "value": "asd",
+          "type": "string"
+        }
+      ],
       "category_id": 4,
-      "createdAt": "2025-06-01T12:13:06.978Z",
-      "updatedAt": "2025-06-01T13:03:38.445Z",
-      "id": 7,
-      "categoryId": 4
+      "created_at": "2025-06-02T03:09:16.500Z",
+      "updated_at": "2025-06-02T03:15:06.652Z",
+      "id": 1,
+      "categoryId": 4,
+      "createdAt": "2025-06-02T03:09:16.500Z",
+      "updatedAt": "2025-06-02T03:09:16.500Z"
     }
   ]
 }

@@ -55,8 +55,8 @@ export type ProductRequest = {
   name?: string
   category_id?: number
   attributes?: AttributeValue[]
-  createdAt?: string;
-  updatedAt?: string;
+  created_at?: string;
+  updated_at?: string;
   status?: 'active' | 'inactive';
   units?: number;
 }

@@ -28,27 +28,27 @@ const CategoryProductListPage = () => {
   const [formState, setFormState] = useState<{
     open: boolean;
     editingProduct?: Product;
-  }>({ open: false });
+  }>({ open: false, editingProduct: undefined });
 
- const [tableConfig, setTableConfig] = useState<{
-  pagination: TablePaginationConfig;
-  sorter: {
-    field?: string;
-    order?: 'ascend' | 'descend';
-  };
-}>({
-  pagination: {
-    current: 1,
-    pageSize: 10,
-    total: 0,
-    showSizeChanger: true,
-    pageSizeOptions: ["5", "10", "20", "50"],
-  },
-  sorter: {
-    field: undefined,
-    order: undefined,
-  },
-});
+  const [tableConfig, setTableConfig] = useState<{
+    pagination: TablePaginationConfig;
+    sorter: {
+      field?: string;
+      order?: "ascend" | "descend";
+    };
+  }>({
+    pagination: {
+      current: 1,
+      pageSize: 10,
+      total: 0,
+      showSizeChanger: true,
+      pageSizeOptions: ["5", "10", "20", "50"],
+    },
+    sorter: {
+      field: undefined,
+      order: undefined,
+    },
+  });
 
   const fetchProducts = useCallback(async () => {
     if (!id) return;
@@ -59,7 +59,7 @@ const CategoryProductListPage = () => {
         page: tableConfig.pagination.current,
         limit: tableConfig.pagination.pageSize,
         sortField: tableConfig.sorter.field,
-        sortOrder: tableConfig.sorter.order as unknown as "ascend" | "descend",
+        sortOrder: tableConfig.sorter.order as "ascend" | "descend" | undefined,
       });
       setProducts(data);
       setTableConfig((prev) => ({
@@ -108,7 +108,7 @@ const CategoryProductListPage = () => {
     } catch (error) {
       message.error(getErrorMessage(error));
     } finally {
-      setFormState({ open: false });
+      setFormState({ open: false, editingProduct: undefined });
       if (selectedCategory?.id !== values.categoryId) {
         navigate(`/category/${values.categoryId}`);
       } else {
@@ -133,12 +133,17 @@ const CategoryProductListPage = () => {
     }
   };
 
-  const openDrawer = useCallback(
-    (product?: Product) => setFormState({ open: true, editingProduct: product }),
-    []
-  );
+  const openDrawer = useCallback((product?: Product) => {
+    if (product) {
+      setFormState({ open: true, editingProduct: product }); // editing
+    } else {
+      setFormState({ open: true, editingProduct: undefined }); // adding
+    }
+  }, []);
 
-  const closeDrawer = useCallback(() => setFormState({ open: false }), []);
+  const closeDrawer = useCallback(() => {
+    setFormState({ open: false, editingProduct: undefined });
+  }, []);
 
   const cancelDelete = useCallback(() => {
     setDeleteModalOpen(false);
@@ -150,7 +155,7 @@ const CategoryProductListPage = () => {
       products={products}
       loading={loading}
       drawerOpen={formState.open}
-      editingProduct={formState.editingProduct}
+      editingProduct={formState.editingProduct?.id ? formState.editingProduct :undefined}
       deleteModalOpen={deleteModalOpen}
       productToDelete={productToDelete}
       deleting={deleting}
