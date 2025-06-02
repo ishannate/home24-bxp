@@ -38,6 +38,15 @@ npm install
 
 ### 3. Create a .env file and copy the content in .env.example
 
+## 📦 Environment Variables
+
+Create a `.env` file at the root:
+
+```env
+VITE_API_BASE_URL=http://localhost:3001
+```
+
+---
 
 ### 4. Start the development server
 
@@ -107,26 +116,7 @@ src/
 
 ---
 
-## ✅ ESLint & Prettier
 
-- ESLint config is in `eslint.config.mjs`
-- Run lint check:
-
-```bash
-npm run lint
-```
-
----
-
-## 📦 Environment Variables
-
-Create a `.env` file at the root:
-
-```env
-VITE_API_BASE_URL=http://localhost:3001
-```
-
----
 
 ## 🧼 Git Ignore
 
