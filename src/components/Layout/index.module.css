@@ -2,7 +2,7 @@
 
 /* Header styling */
 .header {
-  background-color: #292121;
+  background-color: #ffffff;
   height: 72px;
   display: flex;
   align-items: center;
@@ -28,7 +28,13 @@
 }
 
 .logo {
-  font-size: 18px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  font-size: 24px;
   font-weight: 600;
   color: #ffffff;
   cursor: pointer;
@@ -67,7 +73,7 @@
 
 .navItem {
   font-size: 14px;
-  color: #85aafc;
+  color: #558bff;
   font-weight: 500;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -84,7 +90,7 @@
 }
 
 .avatar {
-  background-color: #1890ff;
+  background-color: #ff0707;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -93,4 +99,26 @@
 /* Page content */
 .content {
   padding: 32px;
+}
+
+.drawerMenu {
+  padding: 0;
+}
+
+.drawerItem {
+  margin-bottom: 12px;
+}
+
+.categoryLabel {
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.subCategory {
+  margin-left: 16px;
+  padding-left: 8px;
+  border-left: 1px dashed #ccc;
 }

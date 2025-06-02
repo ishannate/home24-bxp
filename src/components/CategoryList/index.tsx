@@ -1,4 +1,4 @@
-import { Typography, Spin, Tag, Card, Flex } from "antd";
+import { Typography, Spin, Tag, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import type { Category } from "../../types";
 import styles from "./index.module.css";
@@ -65,7 +65,6 @@ const CategoryList = ({
   }
 
   return (
-    <Card className="cardWrapper">
       <Flex className={styles.horizontalWrapper}>
         {categoryTree.map((cat) => {
           const isActive = activePanel === cat.id;
@@ -104,7 +103,6 @@ const CategoryList = ({
           );
         })}
       </Flex>
-    </Card>
   );
 };
 

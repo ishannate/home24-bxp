@@ -276,7 +276,7 @@ const ProductForm = ({
         <Form.Item>
           <Space style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button onClick={onCancel}>Cancel</Button>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" color="default" variant="solid" htmlType="submit">
               {mode === "edit" ? "Update" : "Create"}
             </Button>
           </Space>

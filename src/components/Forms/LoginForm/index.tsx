@@ -24,7 +24,7 @@ const LoginForm = ({
   return (
     <Flex className={styles.container}>
       <Card className={styles.card} variant="borderless">
-        <Title level={2}>Home 24-BXP</Title>
+        <Title level={2} className="pageTitle">Home 24-BXP</Title>
         <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             label="Email"

@@ -100,7 +100,10 @@ export const updateProduct = async (
 ): Promise<Product> => {
   try {
     const product: ProductRequest = {
-      ...values,
+      name: values.name,
+      units: values.units,
+      attributes: values.attributes,
+      status: values.status,
       updated_at: new Date().toISOString(),
     };
     const response = await client.patch(`/products/${id}`, product);

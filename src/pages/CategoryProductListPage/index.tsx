@@ -71,7 +71,12 @@ const CategoryProductListPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [id, tableConfig.pagination.current, tableConfig.pagination.pageSize, tableConfig.sorter]);
+  }, [
+    id,
+    tableConfig.pagination.current,
+    tableConfig.pagination.pageSize,
+    tableConfig.sorter,
+  ]);
 
   useEffect(() => {
     fetchProducts();
@@ -83,7 +88,8 @@ const CategoryProductListPage = () => {
     newSorter: SorterResult<Product> | SorterResult<Product>[]
   ) => {
     const singleSorter = Array.isArray(newSorter) ? newSorter[0] : newSorter;
-    const sortField = typeof singleSorter?.field === "string" ? singleSorter.field : undefined;
+    const sortField =
+      typeof singleSorter?.field === "string" ? singleSorter.field : undefined;
     const sortOrder =
       singleSorter?.order === "ascend" || singleSorter?.order === "descend"
         ? singleSorter.order
@@ -97,13 +103,18 @@ const CategoryProductListPage = () => {
 
   const handleAddEditProduct = async (values: ProductInput) => {
     try {
+      let newlyCreatedUpdatedProduct = undefined;
       if (formState.editingProduct?.id) {
-        await updateProduct(formState.editingProduct.id, values);
+        newlyCreatedUpdatedProduct = await updateProduct(
+          formState.editingProduct.id,
+          values
+        );
         message.success("Product updated successfully");
       } else {
-        await createProduct(values);
+        newlyCreatedUpdatedProduct = await createProduct(values);
         message.success("Product created successfully");
       }
+      setLastUpdatedProductId(newlyCreatedUpdatedProduct?.id);
       fetchProducts();
     } catch (error) {
       message.error(getErrorMessage(error));
@@ -111,9 +122,7 @@ const CategoryProductListPage = () => {
       setFormState({ open: false, editingProduct: undefined });
       if (selectedCategory?.id !== values.categoryId) {
         navigate(`/category/${values.categoryId}`);
-      } else {
-        setLastUpdatedProductId(formState.editingProduct?.id);
-      }
+      } 
     }
   };
 
@@ -130,6 +139,7 @@ const CategoryProductListPage = () => {
       setDeleting(false);
       setDeleteModalOpen(false);
       setProductToDelete(null);
+      setLastUpdatedProductId(0);
     }
   };
 
@@ -155,7 +165,9 @@ const CategoryProductListPage = () => {
       products={products}
       loading={loading}
       drawerOpen={formState.open}
-      editingProduct={formState.editingProduct?.id ? formState.editingProduct :undefined}
+      editingProduct={
+        formState.editingProduct?.id ? formState.editingProduct : undefined
+      }
       deleteModalOpen={deleteModalOpen}
       productToDelete={productToDelete}
       deleting={deleting}

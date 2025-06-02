@@ -1,17 +1,34 @@
-import { Layout, Avatar, Dropdown, Flex, Typography } from "antd";
+import {
+  Layout,
+  Avatar,
+  Dropdown,
+  Flex,
+  Typography,
+  Drawer,
+} from "antd";
 import type { MenuProps } from "antd";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import {
+  Outlet,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useCategoryStore } from "../../store/useCategoryStore";
 import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../../api/category";
-import { buildCategoryTree, findCategoryById } from "../../utils/categoryTree";
+import {
+  buildCategoryTree,
+} from "../../utils/categoryTree";
 import type { Category } from "../../types";
 import styles from "./index.module.css";
-import { FolderOutlined, FolderOpenOutlined, MenuOutlined } from "@ant-design/icons";
+import {
+  FolderOutlined,
+  FolderOpenOutlined,
+  MenuOutlined,
+} from "@ant-design/icons";
 
 const { Header, Content } = Layout;
-const { Text} = Typography;
+const { Text } = Typography;
 
 const MainLayout = () => {
   const user = useAuthStore((state) => state.user);
@@ -23,6 +40,10 @@ const MainLayout = () => {
   );
 
   const [categoryTree, setCategoryTree] = useState<Category[]>([]);
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+
+  const openDrawer = () => setDrawerOpen(true);
+  const closeDrawer = () => setDrawerOpen(false);
 
   useEffect(() => {
     const load = async () => {
@@ -30,12 +51,6 @@ const MainLayout = () => {
       const tree = buildCategoryTree(data);
       setCategoryTree(tree);
 
-      if (currentCategoryId) {
-        const selected = findCategoryById(tree, Number(currentCategoryId));
-        if (selected) {
-          setSelectedCategory(selected);
-        }
-      }
     };
     load();
   }, [currentCategoryId, setSelectedCategory]);
@@ -62,33 +77,30 @@ const MainLayout = () => {
     },
   ];
 
-  const buildMenuItems = (categories: Category[]): MenuProps["items"] =>
-    categories.map((cat) => ({
-      key: String(cat.id),
-      label: (
-        <span className={styles.menuItem}>
-          {cat.children?.length ? (
-            <FolderOpenOutlined style={{ marginRight: 8 }} />
-          ) : (
-            <FolderOutlined style={{ marginRight: 8 }} />
-          )}
-          {cat.name}
-        </span>
-      ),
-      children: cat.children?.length ? buildMenuItems(cat.children) : undefined,
-    }));
-
-  const categoryMenu: MenuProps = {
-    items: buildMenuItems(categoryTree),
-    selectedKeys: currentCategoryId ? [currentCategoryId] : [],
-    onClick: ({ key }) => {
-      const selected = findCategoryById(categoryTree, Number(key));
-      if (selected) {
-        setSelectedCategory(selected);
-      }
-      navigate(`/category/${key}`);
-    },
-  };
+  const renderCategory = (category: Category) => (
+    <div key={category.id} className={styles.drawerItem}>
+      <div
+        className={styles.categoryLabel}
+        onClick={() => {
+          setSelectedCategory(category);
+          navigate(`/category/${category.id}`);
+          closeDrawer();
+        }}
+      >
+        {category.children?.length ? (
+          <FolderOpenOutlined style={{ marginRight: 8 }} />
+        ) : (
+          <FolderOutlined style={{ marginRight: 8 }} />
+        )}
+        {category.name}
+      </div>
+      {category.children && (
+        <div className={styles.subCategory}>
+          {category.children.map(renderCategory)}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <Layout className={styles.container}>
@@ -99,7 +111,7 @@ const MainLayout = () => {
               className={styles.logo}
               onClick={() => navigate("/dashboard")}
             >
-              🗂 Home-24-BXP
+              24
             </Text>
             <Flex className={styles.menu}>
               <Flex className={styles.desktopMenu}>
@@ -109,14 +121,13 @@ const MainLayout = () => {
                 >
                   Dashboard
                 </Text>
-                <Dropdown menu={categoryMenu} trigger={["click"]}>
-                  <Text
-                    className={styles.navItem}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Categories
-                  </Text>
-                </Dropdown>
+                <Text
+                  className={styles.navItem}
+                  style={{ cursor: "pointer" }}
+                  onClick={openDrawer}
+                >
+                  Categories
+                </Text>
               </Flex>
 
               <Flex className={styles.mobileMenu}>
@@ -132,7 +143,7 @@ const MainLayout = () => {
                       {
                         key: "categories",
                         label: "Categories",
-                        children: categoryMenu.items,
+                        onClick: openDrawer,
                       },
                     ],
                   }}
@@ -163,6 +174,19 @@ const MainLayout = () => {
       <Content className={styles.content}>
         <Outlet />
       </Content>
+
+      {/* Category Drawer */}
+      <Drawer
+        title="Categories"
+        placement="left"
+        onClose={closeDrawer}
+        open={isDrawerOpen}
+        bodyStyle={{ padding: "16px" }}
+      >
+        <div className={styles.drawerMenu}>
+          {categoryTree.map((cat) => renderCategory(cat))}
+        </div>
+      </Drawer>
     </Layout>
   );
 };

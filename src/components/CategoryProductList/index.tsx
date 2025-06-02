@@ -177,11 +177,11 @@ const CategoryProductList = ({
         <Title level={2} className="pageTitle">
           Products in {selectedCategory?.name}
         </Title>
-        <Button type="primary" onClick={openDrawer}>
+        <Button color="default" variant="solid" onClick={openDrawer}>
           + Add Product
         </Button>
       </Flex>
-
+asdsd{lastUpdatedProductId}
       <LastUpdatedProductWidget
         categoryId={selectedCategory?.id?.toString() || ""}
         lastUpdatedProductId={lastUpdatedProductId}

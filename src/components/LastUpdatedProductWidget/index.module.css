@@ -1,9 +1,9 @@
 .widgetCard {
-  background: #2c3965;
+  background: #ffffff;
   border-radius: 12px;
   padding: 24px 28px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e0e0e0;
+  border: 1px solid #ffe0e0;
   min-width: 260px;
   width: 100%;
   margin-left: auto;
@@ -16,12 +16,12 @@
 .widgetTitle {
   font-size: 18px;
   font-weight: 700;
-  color: #ffffff;
+  color: #323232;
 }
 
 .widgetSubtitle {
   font-size: 14px;
-  color: #e6e6e6;
+  color: #323232;
   display: flex;
   gap: 16px;
   align-items: center;
@@ -30,7 +30,7 @@
 .widgetTime {
   font-size: 15px;
   font-weight: 500;
-  color: #ffffff;
+  color: #323232;
 }
 
 .chevron {

@@ -1,8 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import LastUpdatedProductWidget from "./index";
 
-
-// 👇 Define and mock API in-place
 jest.mock("../../api/product", () => ({
   __esModule: true,
   fetchProductsByCategory: jest.fn().mockResolvedValue({
@@ -35,7 +33,7 @@ describe("LastUpdatedProductWidget (inline mock)", () => {
 
     expect(mockedFetchProductsByCategory).toHaveBeenCalledWith({
       categoryId: "1",
-      sortField: "updatedAt",
+      sortField: "updated_at", // ✅ match the actual request format
       sortOrder: "descend",
       page: 1,
       limit: 1,

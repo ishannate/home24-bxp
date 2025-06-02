@@ -8,37 +8,39 @@ interface LastUpdatedProductWidgetProps {
   categoryId?: string;
   lastUpdatedProductId?: number;
   isCategoryBased?: boolean;
-  categoryList?: Category[]
+  categoryList?: Category[];
 }
 
 const LastUpdatedProductWidget = ({
   categoryId,
   lastUpdatedProductId,
   isCategoryBased = true,
-  categoryList
+  categoryList,
 }: LastUpdatedProductWidgetProps) => {
   const [product, setProduct] = useState<Product | null>(null);
 
   const fetchLastUpdatedProduct = async () => {
     try {
-      if (isCategoryBased && categoryId) {
-        const { data } = await fetchProductsByCategory({
-          categoryId,
-          sortField: "updatedAt",
-          sortOrder: "descend",
-          page: 1,
-          limit: 1,
-        });
-        setProduct(data[0]);
-      } else if (!isCategoryBased && !categoryId) {
-        const { data } = await fetchAllProducts({
-          sortField: "updatedAt",
-          sortOrder: "descend",
-          page: 1,
-          limit: 1,
-        });
-        setProduct(data[0]);
-      }
+      const fetchFn =
+        isCategoryBased && categoryId
+          ? () =>
+              fetchProductsByCategory({
+                categoryId,
+                sortField: "updated_at",
+                sortOrder: "descend",
+                page: 1,
+                limit: 1,
+              })
+          : () =>
+              fetchAllProducts({
+                sortField: "updated_at",
+                sortOrder: "descend",
+                page: 1,
+                limit: 1,
+              });
+
+      const { data } = await fetchFn();
+      setProduct(data.length ? data[0] : null);
     } catch (error) {
       console.error("Failed to fetch last updated product", error);
     }
@@ -47,7 +49,7 @@ const LastUpdatedProductWidget = ({
   useEffect(() => {
     fetchLastUpdatedProduct();
     fetchCategoryDetails();
-  }, [categoryId, isCategoryBased]);
+  }, [categoryId, isCategoryBased, lastUpdatedProductId]);
 
   const fetchCategoryDetails = () => {
     if (product && categoryList && categoryList.length > 0) {
@@ -58,16 +60,6 @@ const LastUpdatedProductWidget = ({
       return category?.name;
     }
   };
-
-  useEffect(() => {
-    if (
-      lastUpdatedProductId !== undefined &&
-      product !== null &&
-      product.id !== lastUpdatedProductId
-    ) {
-      fetchLastUpdatedProduct();
-    }
-  }, [lastUpdatedProductId, product]);
 
   if (!product) return null;
 
@@ -82,7 +74,12 @@ const LastUpdatedProductWidget = ({
         <DoubleLeftOutlined className={styles.chevron} />
         {product.name}
       </div>
-      {!isCategoryBased && <div className={styles.widgetSubtitle}> Category : {fetchCategoryDetails()}</div>}
+      {!isCategoryBased && (
+        <div className={styles.widgetSubtitle}>
+          {" "}
+          Category : {fetchCategoryDetails()}
+        </div>
+      )}
       <div className={styles.widgetSubtitle}>
         Last updated at:
         <div className={styles.widgetTime}>{formattedDate}</div>

@@ -31,7 +31,7 @@ describe("ProductDetails", () => {
     onDeleteMock = jest.fn();
   });
 
-  it("renders product details correctly", () => {
+  it("renders product and category details correctly", () => {
     render(
       <ProductDetails
         product={mockProduct}
@@ -42,9 +42,18 @@ describe("ProductDetails", () => {
       />
     );
 
+    // Product title
     expect(screen.getByText("Sample Product")).toBeInTheDocument();
-    expect(screen.getByText("Product ID: 1")).toBeInTheDocument();
+
+    // Category details
+    expect(screen.getByText("Category Name")).toBeInTheDocument();
     expect(screen.getByText("T-Shirts")).toBeInTheDocument();
+    expect(screen.getByText("Category ID")).toBeInTheDocument();
+    expect(screen.getByText("10")).toBeInTheDocument();
+
+    // Product card details
+    expect(screen.getByText("Product Id")).toBeInTheDocument();
+    expect(screen.getByText("1")).toBeInTheDocument();
     expect(screen.getByText("Available")).toBeInTheDocument();
     expect(screen.getByText("100")).toBeInTheDocument();
 
@@ -56,6 +65,7 @@ describe("ProductDetails", () => {
       screen.getByText(format(new Date(mockProduct.updatedAt), "dd MMM yyyy, HH:mm"))
     ).toBeInTheDocument();
 
+    // Attributes
     expect(screen.getByText("color")).toBeInTheDocument();
     expect(screen.getByText("blue")).toBeInTheDocument();
   });
