@@ -24,7 +24,9 @@ const LoginForm = ({
   return (
     <Flex className={styles.container}>
       <Card className={styles.card} variant="borderless">
-        <Title level={2} className="pageTitle">Home 24-BXP</Title>
+        <Title level={2} className="pageTitle">
+          Home 24-BXP
+        </Title>
         <Form layout="vertical" onFinish={handleSubmit}>
           <Form.Item
             label="Email"
@@ -39,6 +41,7 @@ const LoginForm = ({
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Enter email"
+              style={{ height: 45 }}
             />
           </Form.Item>
 
@@ -55,10 +58,18 @@ const LoginForm = ({
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Enter password"
+              style={{ height: 45 }}
             />
           </Form.Item>
 
-          <Button type="primary" color="default" variant="solid" htmlType="submit">
+          <Button
+            block
+            style={{ height: 48 }}
+            type="primary"
+            color="default"
+            variant="solid"
+            htmlType="submit"
+          >
             Login
           </Button>
         </Form>

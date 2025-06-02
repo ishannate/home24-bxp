@@ -110,8 +110,6 @@
 
 @media (max-width: 768px) {
   .customPanel {
-    min-width: 250px;
     width: 100%;
-    max-width: 300px;
   }
 }
