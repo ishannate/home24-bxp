@@ -80,7 +80,7 @@
 }
 
 .navItem:hover {
-  color: #1890ff;
+  color: #f45334;
 }
 
 /* Right side (avatar) */
@@ -124,6 +124,6 @@
 }
 
 .categoryLabel:hover{
-  background-color: #f45334;
-  color: #fff
+  background-color: #fdd8d165;
+  color: #272727
 }
