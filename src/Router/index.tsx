@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/useAuthStore'
 import DashboardPage from '../pages/Dashboard'
 import MainLayout from '../components/Layout'
 import LoginPage from '../pages/Login'
-import CategoryProductsListPage from '../pages/CategoryProductListPage'
+import ProductListPage from '../pages/ProductListPage'
 import ProductDetailsPage from '../pages/ProductDetailsPage'
 
 const AppRouter = () => {
@@ -18,7 +18,7 @@ const AppRouter = () => {
         {/* Protected layout */}
         <Route element={user ? <MainLayout /> : <Navigate to="/login" replace />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/category/:id" element={<CategoryProductsListPage />} />
+          <Route path="/category/:id" element={<ProductListPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
         </Route>
 

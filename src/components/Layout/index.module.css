@@ -58,7 +58,7 @@
 
 .menuIcon {
   font-size: 20px;
-  color: #fff;
+  color: #f45334;
 }
 
 @media (max-width: 768px) {
@@ -72,9 +72,9 @@
 }
 
 .navItem {
-  font-size: 14px;
-  color: #558bff;
-  font-weight: 500;
+  font-size: 16px;
+  color: #232323;
+  font-weight: 700;
   cursor: pointer;
   transition: color 0.2s ease;
 }
@@ -90,7 +90,7 @@
 }
 
 .avatar {
-  background-color: #ff0707;
+  background-color: #f45334;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -121,4 +121,9 @@
   margin-left: 16px;
   padding-left: 8px;
   border-left: 1px dashed #ccc;
+}
+
+.categoryLabel:hover{
+  background-color: #f45334;
+  color: #fff
 }

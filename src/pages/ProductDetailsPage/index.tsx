@@ -10,8 +10,8 @@ import {
 import ProductDrawer from "../../components/Shared/ProductDrawer";
 import ConfirmDeleteModal from "../../components/Shared/ConfirmDeleteModal";
 import { getErrorMessage } from "../../utils/helper";
-import ProductDetails from "../../components/ProductDetails";
 import { useCategoryStore } from "../../store/useCategoryStore";
+import ProductDetails from "../../components/Product/ProductDetails";
 
 const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();

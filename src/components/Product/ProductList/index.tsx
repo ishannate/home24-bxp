@@ -18,17 +18,17 @@ import type {
   Product,
   ProductInput,
   Category,
-} from "../../types";
+} from "../../../types";
 
-import LastUpdatedProductWidget from "../LastUpdatedProductWidget";
-import ProductDrawer from "../Shared/ProductDrawer";
-import ConfirmDeleteModal from "../Shared/ConfirmDeleteModal";
+import LastUpdatedProductWidget from "../../LastUpdatedProductWidget";
+import ProductDrawer from "../../Shared/ProductDrawer";
+import ConfirmDeleteModal from "../../Shared/ConfirmDeleteModal";
 import styles from "./index.module.css";
 import { useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
-interface CategoryProductListProps {
+interface ProductListProps {
   products: Product[];
   pagination: TablePaginationConfig;
   loading: boolean;
@@ -56,7 +56,7 @@ interface CategoryProductListProps {
   onEdit: (product: Product) => void;
 }
 
-const CategoryProductList = ({
+const ProductList = ({
   products,
   pagination,
   loading,
@@ -75,7 +75,7 @@ const CategoryProductList = ({
   onDeleteIntent,
   onCancelDelete,
   onEdit,
-}: CategoryProductListProps) => {
+}: ProductListProps) => {
   const navigate = useNavigate();
 
   const columns = [
@@ -91,13 +91,13 @@ const CategoryProductList = ({
       sorter: true,
     },
     {
-      title: "Created At",
+      title: "Created at",
       dataIndex: "createdAt",
       sorter: true,
       render: (date: string) => format(new Date(date), "dd-MM-yyyy HH:mm"),
     },
     {
-      title: "Updated At",
+      title: "Updated at",
       dataIndex: "updatedAt",
       sorter: true,
       render: (date: string) => format(new Date(date), "dd-MM-yyyy HH:mm"),
@@ -149,6 +149,7 @@ const CategoryProductList = ({
           <Tooltip title="Edit Product">
             <Button
               type="text"
+              data-testid={`edit-product-${record.id}`}
               icon={<EditOutlined />}
               onClick={(e: { stopPropagation: () => void }) => {
                 e.stopPropagation();
@@ -159,6 +160,7 @@ const CategoryProductList = ({
           <Tooltip title="Delete Product">
             <Button
               type="text"
+                data-testid={`delete-product-${record.id}`}
               icon={<DeleteOutlined style={{ color: "red" }} />}
               onClick={(e: { stopPropagation: () => void }) => {
                 e.stopPropagation();
@@ -181,7 +183,6 @@ const CategoryProductList = ({
           + Add Product
         </Button>
       </Flex>
-asdsd{lastUpdatedProductId}
       <LastUpdatedProductWidget
         categoryId={selectedCategory?.id?.toString() || ""}
         lastUpdatedProductId={lastUpdatedProductId}
@@ -232,4 +233,4 @@ asdsd{lastUpdatedProductId}
   );
 };
 
-export default CategoryProductList;
+export default ProductList;

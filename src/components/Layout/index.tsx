@@ -1,24 +1,11 @@
-import {
-  Layout,
-  Avatar,
-  Dropdown,
-  Flex,
-  Typography,
-  Drawer,
-} from "antd";
+import { Layout, Avatar, Dropdown, Flex, Typography, Drawer } from "antd";
 import type { MenuProps } from "antd";
-import {
-  Outlet,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
 import { useCategoryStore } from "../../store/useCategoryStore";
 import { useEffect, useState } from "react";
 import { fetchAllCategories } from "../../api/category";
-import {
-  buildCategoryTree,
-} from "../../utils/categoryTree";
+import { buildCategoryTree, findCategoryById } from "../../utils/categoryTree";
 import type { Category } from "../../types";
 import styles from "./index.module.css";
 import {
@@ -31,6 +18,7 @@ const { Header, Content } = Layout;
 const { Text } = Typography;
 
 const MainLayout = () => {
+  const location = useLocation();
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
@@ -51,9 +39,16 @@ const MainLayout = () => {
       const tree = buildCategoryTree(data);
       setCategoryTree(tree);
 
+      // ✅ Only set selected category if we're on a category page
+      if (location.pathname.startsWith("/category/") && currentCategoryId) {
+        const selected = findCategoryById(tree, Number(currentCategoryId));
+        if (selected) {
+          setSelectedCategory(selected);
+        }
+      }
     };
     load();
-  }, [currentCategoryId, setSelectedCategory]);
+  }, [currentCategoryId, setSelectedCategory, location.pathname]);
 
   const handleLogout = () => {
     logout();
@@ -82,9 +77,11 @@ const MainLayout = () => {
       <div
         className={styles.categoryLabel}
         onClick={() => {
+          if(category.children?.length === 0){
           setSelectedCategory(category);
           navigate(`/category/${category.id}`);
           closeDrawer();
+          }
         }}
       >
         {category.children?.length ? (
@@ -95,9 +92,9 @@ const MainLayout = () => {
         {category.name}
       </div>
       {category.children && (
-        <div className={styles.subCategory}>
+        <Flex className={styles.subCategory} vertical>
           {category.children.map(renderCategory)}
-        </div>
+        </Flex>
       )}
     </div>
   );
@@ -107,12 +104,20 @@ const MainLayout = () => {
       <Header className={styles.header}>
         <Flex className={styles.headerInner}>
           <Flex className={styles.navLeft}>
-            <Text
-              className={styles.logo}
+            <Flex
               onClick={() => navigate("/dashboard")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
             >
-              24
-            </Text>
+              <img
+                src="/home-24.png"
+                alt="Home24 Logo"
+                style={{ height: "40px", marginRight: "16px" }}
+              />
+            </Flex>
             <Flex className={styles.menu}>
               <Flex className={styles.desktopMenu}>
                 <Text
@@ -175,13 +180,11 @@ const MainLayout = () => {
         <Outlet />
       </Content>
 
-      {/* Category Drawer */}
       <Drawer
         title="Categories"
         placement="left"
         onClose={closeDrawer}
         open={isDrawerOpen}
-        bodyStyle={{ padding: "16px" }}
       >
         <div className={styles.drawerMenu}>
           {categoryTree.map((cat) => renderCategory(cat))}

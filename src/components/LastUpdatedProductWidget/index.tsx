@@ -72,7 +72,7 @@ const LastUpdatedProductWidget = ({
     <div className={styles.widgetCard}>
       <div className={styles.widgetTitle}>
         <DoubleLeftOutlined className={styles.chevron} />
-        {product.name}
+        Product: {product.name}
       </div>
       {!isCategoryBased && (
         <div className={styles.widgetSubtitle}>

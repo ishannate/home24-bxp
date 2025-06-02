@@ -16,14 +16,12 @@ export const productSchema = yup.object({
       code: yup.string().required("Attribute code is required"),
       type: yup
         .string()
-        .oneOf(["string", "number", "boolean", "array"])
+        .oneOf(["string", "number", "boolean", "tags"])
         .required("Attribute type is required"),
       value: yup.mixed().when("type", ([type], schema) => {
         switch (type) {
           case "string":
-            return yup
-              .string()
-              .required("Value must be a string");
+            return yup.string().required("Value must be a string");
           case "number":
             return yup
               .number()
@@ -34,12 +32,17 @@ export const productSchema = yup.object({
               .boolean()
               .typeError("Value must be a boolean")
               .required("Value is required");
-          case "array":
+          case "tags":
             return yup
-              .array()
-              .of(yup.string())
-              .typeError("Value must be an array of strings")
-              .required("Value is required");
+              .string()
+              .required("Tags are required")
+              .test(
+                "is-valid-tags",
+                "Must be comma-separated string",
+                function (value) {
+                  return typeof value === "string";
+                }
+              );
           default:
             return schema; // fallback
         }

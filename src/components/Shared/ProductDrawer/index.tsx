@@ -19,6 +19,7 @@ const ProductDrawer = ({
   initialValues,
 }: ProductDrawerProps) => {
   const { selectedCategory } = useCategoryStore();
+  console.log({...selectedCategory})
   return (
     <DrawerWrapper
       open={open}

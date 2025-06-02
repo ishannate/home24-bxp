@@ -58,7 +58,7 @@ const LoginForm = ({
             />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" color="default" variant="solid" htmlType="submit">
             Login
           </Button>
         </Form>

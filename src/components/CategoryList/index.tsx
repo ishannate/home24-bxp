@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import type { Category } from "../../types";
 import styles from "./index.module.css";
 import {
-  DownOutlined,
-  RightOutlined,
   FileOutlined,
   FolderOpenOutlined,
 } from "@ant-design/icons";
@@ -14,16 +12,9 @@ const { Text } = Typography;
 interface CategoryListProps {
   loading: boolean;
   categoryTree: Category[];
-  activePanel: number | undefined;
-  setActivePanel: (id: number | undefined) => void;
 }
 
-const CategoryList = ({
-  loading,
-  categoryTree,
-  activePanel,
-  setActivePanel,
-}: CategoryListProps) => {
+const CategoryList = ({ loading, categoryTree }: CategoryListProps) => {
   const navigate = useNavigate();
 
   const renderSubcategories = (children?: Category[]) => {
@@ -65,44 +56,29 @@ const CategoryList = ({
   }
 
   return (
-      <Flex className={styles.horizontalWrapper}>
-        {categoryTree.map((cat) => {
-          const isActive = activePanel === cat.id;
-          return (
-            <Flex
-              key={cat.id}
-              className={`${styles.customPanel} ${
-                isActive ? styles.activePanel : ""
-              }`}
-            >
-              <Flex
-                className={styles.panelHeader}
-                onClick={() => setActivePanel(isActive ? undefined : cat.id)}
-              >
-                <Text className={styles.categoryName}>{cat.name}</Text>
-                <Flex className={styles.panelMeta}>
-                  <Tag className={styles.statusTag}>Active</Tag>
-                  {isActive ? (
-                    <DownOutlined className={styles.toggleIcon} />
-                  ) : (
-                    <RightOutlined className={styles.toggleIcon} />
-                  )}
-                </Flex>
-              </Flex>
-
-              <Flex
-                className={`${styles.panelContent} ${
-                  isActive
-                    ? styles.panelContentExpanded
-                    : styles.panelContentCollapsed
-                }`}
-              >
-                {isActive && renderSubcategories(cat.children)}
-              </Flex>
+    <Flex className={styles.horizontalWrapper}>
+      {categoryTree.map((cat) => (
+        <Flex key={cat.id} className={styles.customPanel}>
+          <Flex className={styles.panelHeader}>
+            <Text className={styles.categoryName}>
+              {cat.name}
+              {cat.children && cat.children.length > 0 && (
+                <span className={styles.childCount}>
+                  {" "}
+                  ({cat.children.length})
+                </span>
+              )}
+            </Text>
+            <Flex className={styles.panelMeta}>
+              <Tag className={styles.statusTag}>Active</Tag>
             </Flex>
-          );
-        })}
-      </Flex>
+          </Flex>
+          <Flex className={`${styles.panelContent} ${styles.panelContentExpanded}`}>
+            {renderSubcategories(cat.children)}
+          </Flex>
+        </Flex>
+      ))}
+    </Flex>
   );
 };
 

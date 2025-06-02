@@ -1,4 +1,4 @@
-import { Form, Input, InputNumber, Button, Space, Select, message } from "antd";
+import { Form, Input, Button, Space, Select, message } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   useFormik,
@@ -8,7 +8,7 @@ import {
 } from "formik";
 import type { ProductInput, Category, AttributeValue } from "../../../types";
 import { useEffect, useState } from "react";
-import {  fetchLeafCategories } from "../../../api/category";
+import { fetchLeafCategories } from "../../../api/category";
 import { productSchema } from "../../../validation/ProductSchema";
 import { getErrorMessage } from "../../../utils/helper";
 
@@ -44,7 +44,7 @@ const ProductForm = ({
   }, []);
 
   if (mode === "create" && defaultCategoryId === undefined) {
-    throw new Error("defaultCategoryId is required in create mode");
+    message.error("oops something went wrong");
   }
 
   const formik = useFormik<ProductInput>({
@@ -58,6 +58,10 @@ const ProductForm = ({
     validationSchema: productSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
+      if (!formik.dirty) {
+        message.info("No changes detected.");
+        return;
+      }
       onSubmit(values);
     },
   });
@@ -84,9 +88,7 @@ const ProductForm = ({
         <Form.Item
           label="Category"
           validateStatus={
-            formik.errors.categoryId && formik.touched.categoryId
-              ? "error"
-              : ""
+            formik.errors.categoryId && formik.touched.categoryId ? "error" : ""
           }
           help={formik.touched.categoryId && formik.errors.categoryId}
         >
@@ -130,13 +132,21 @@ const ProductForm = ({
           }
           help={formik.touched.units && formik.errors.units}
         >
-          <InputNumber
-            min={0}
+          <Input
             name="units"
             value={formik.values.units}
-            onChange={(val) => formik.setFieldValue("units", val)}
-            onBlur={() => formik.setFieldTouched("units", true)}
-            style={{ width: "100%" }}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onChange={(e: { target: { value: any } }) => {
+              const value = e.target.value;
+              // Only allow digits or empty string
+              if (/^\d*$/.test(value)) {
+                formik.setFieldValue(
+                  "units",
+                  value === "" ? "" : Number(value)
+                );
+              }
+            }}
+            onBlur={formik.handleBlur}
             placeholder="Enter number of units"
           />
         </Form.Item>
@@ -248,7 +258,7 @@ const ProductForm = ({
                       <Option value="string">String</Option>
                       <Option value="number">Number</Option>
                       <Option value="boolean">Boolean</Option>
-                      <Option value="array">Array</Option>
+                      <Option value="tags">Tags</Option>
                     </Select>
                   </Form.Item>
 
@@ -276,7 +286,12 @@ const ProductForm = ({
         <Form.Item>
           <Space style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button onClick={onCancel}>Cancel</Button>
-            <Button type="primary" color="default" variant="solid" htmlType="submit">
+            <Button
+              type="primary"
+              color="default"
+              variant="solid"
+              htmlType="submit"
+            >
               {mode === "edit" ? "Update" : "Create"}
             </Button>
           </Space>

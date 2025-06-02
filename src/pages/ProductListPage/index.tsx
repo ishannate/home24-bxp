@@ -12,9 +12,9 @@ import {
 } from "../../api/product";
 import { useCategoryStore } from "../../store/useCategoryStore";
 import { getErrorMessage } from "../../utils/helper";
-import CategoryProductList from "../../components/CategoryProductList";
+import ProductList from "../../components/Product/ProductList";
 
-const CategoryProductListPage = () => {
+const ProductListPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { selectedCategory } = useCategoryStore();
@@ -161,7 +161,7 @@ const CategoryProductListPage = () => {
   }, []);
 
   return (
-    <CategoryProductList
+    <ProductList
       products={products}
       loading={loading}
       drawerOpen={formState.open}
@@ -190,4 +190,4 @@ const CategoryProductListPage = () => {
   );
 };
 
-export default CategoryProductListPage;
+export default ProductListPage;
