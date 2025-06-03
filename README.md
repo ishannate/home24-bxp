@@ -68,7 +68,7 @@ Make sure you have the `db.json` file in the root directory or please contact me
 ### Start JSON server:
 
 ```bash
-npm npm run serve:api
+npm run serve:api
 ```
 
 This will start the mock backend at `http://localhost:4000`.
