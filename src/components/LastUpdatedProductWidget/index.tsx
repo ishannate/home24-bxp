@@ -49,6 +49,7 @@ const LastUpdatedProductWidget = ({
   useEffect(() => {
     fetchLastUpdatedProduct();
     fetchCategoryDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, isCategoryBased, lastUpdatedProductId]);
 
   const fetchCategoryDetails = () => {

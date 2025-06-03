@@ -13,7 +13,6 @@ const DashboardPage = () => {
   const { fetchCategories, categoryList } = useCategoryStore();
   const [categoryTree, setCategoryTree] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activePanel, setActivePanel] = useState<number | undefined>();
 
   useEffect(() => {
     const load = async () => {
@@ -26,6 +25,7 @@ const DashboardPage = () => {
       }
     };
     load();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -46,8 +46,6 @@ const DashboardPage = () => {
       <CategoryList
         loading={loading}
         categoryTree={categoryTree}
-        activePanel={activePanel}
-        setActivePanel={setActivePanel}
       />
     </Flex>
   );
